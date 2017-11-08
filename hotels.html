@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Import Bootstrap 4 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+        <!-- Import Font Awesome -->
+        <script src="https://use.fontawesome.com/4560984a5d.js"></script>
+
+        <!-- Import helper functions -->
+        <script src="js/helper.js"></script>
+    </head>
+    <body onload="setupHotels()">
+        <div class="container-fluid">
+            <a class="btn-secondary fa fa-arrow-left fa-2x" href="details.html"></a>
+            <h1 class="text-center">Hotels</h1>
+            <h2>Current Flight Selected</h2>
+            <div class="card text-center">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-6 align-self-center">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6 align-self-center">
+                            <div class="row">
+                                <h3 id="currentName">Le Motel</h3>
+                            </div>
+                            <div id="currentStars" class="row">
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class="row">
+                                <h3 id="currentRating">78% Recommended on TripAdvisor</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <a role="button" class="btn btn-success" href="departure.html">View Details</a>
+                </div>
+            </div>
+            <h2>Other Flight Options</h2>
+            <div class="card text-center">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-6 align-self-center">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6 align-self-center">
+                            <div class="row">
+                                <h3 id="alt1Name">Le Hotel</h3>
+                            </div>
+                            <div id="alt1Stars" class="row">
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class="row">
+                                <h3 id="alt1Rating">87% Recommended on TripAdvisor</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <a role="button" class="btn btn-success" href="return.html">View Details</a>
+                    <a id="alt1Btn" role="button" class="btn btn-primary" href="details.html">Choose</a>
+                </div>
+            </div>
+            <div class="card text-center">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-6 align-self-center">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-6 align-self-center">
+                            <div class="row">
+                                <h3 id="alt2Name">Le Beau Hotel</h3>
+                            </div>
+                            <div id="alt2Stars" class="row">
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div class="row">
+                                <h3 id="alt2Rating">95% Recommended on TripAdvisor</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <a role="button" class="btn btn-success" href="return.html">View Details</a>
+                    <a id="alt2Btn" role="button" class="btn btn-primary" href="details.html">Choose</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
