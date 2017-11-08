@@ -5,18 +5,21 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
   <!-- Import Font Awesome -->
   <script src="https://use.fontawesome.com/4560984a5d.js"></script>
+
+  <!-- Import helper functions -->
+  <script src="js/helper.js"></script>
 </head>
-<body>
+<body onload="setupView()">
 
 <div class="container-fluid">
   <div class="col-3">
-  <a class="btn fa fa-arrow-left fa-2x" href="details.html"></a>
+  <a id="link" class="btn fa fa-arrow-left fa-2x" href="details.html"></a>
   </div>
 
   <h1 class="text-center">Return Flight</h1>
@@ -53,6 +56,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <!-- <h1 class="text-center">Le Beau Hotel</h1> -->
+    <p id="airline" class="lead">Ryanair</p>
     <p class="lead">Boeing 787</p>
     <p class="lead">10:40 A.M. - 5:46 A.M.</p>
     <p class="lead">15h 6m CDG-SAN</p>

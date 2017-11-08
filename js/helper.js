@@ -54,6 +54,19 @@ function setupDetails() {
     document.getElementById('total').innerHTML = 'Total: $' + numberWithCommas(calcTotal());
 
     localStorage.setItem('total', document.getElementById('total').innerHTML);
+
+    document.getElementById('departure').onclick = function() {
+        localStorage.setItem('link', 'details.html');
+        localStorage.setItem('airline', localStorage.getItem('departureAirline'));
+    };
+    document.getElementById('hotel').onclick = function() {
+        localStorage.setItem('link', 'details.html');
+        localStorage.setItem('hotel', localStorage.getItem('hotelName'));
+    };
+    document.getElementById('return').onclick = function() {
+        localStorage.setItem('link', 'details.html');
+        localStorage.setItem('airline', localStorage.getItem('returnAirline'));
+    };
 }
 
 function setupDepartures() {
@@ -67,6 +80,15 @@ function setupDepartures() {
         document.getElementById('alternative2btn').onclick = function() {
             localStorage.setItem('departureAirline', 'Air France');
         };
+
+        document.getElementById('alternative1view').onclick = function() {
+            localStorage.setItem('airline', 'American Airlines');
+            localStorage.setItem('link', 'departureflights.html');
+        }
+        document.getElementById('alternative2view').onclick = function() {
+            localStorage.setItem('airline', 'Air France');
+            localStorage.setItem('link', 'departureflights.html');
+        }
     }
 
     else if (current == 'American Airlines') {
@@ -78,6 +100,15 @@ function setupDepartures() {
         document.getElementById('alternative2btn').onclick = function() {
             localStorage.setItem('departureAirline', 'Air France');
         };
+
+        document.getElementById('alternative1view').onclick = function() {
+            localStorage.setItem('airline', 'Ryanair');
+            localStorage.setItem('link', 'departureflights.html');
+        }
+        document.getElementById('alternative2view').onclick = function() {
+            localStorage.setItem('airline', 'Air France');
+            localStorage.setItem('link', 'departureflights.html');
+        }
     }
 
     else if (current == 'Air France') {
@@ -89,9 +120,22 @@ function setupDepartures() {
         document.getElementById('alternative2btn').onclick = function() {
             localStorage.setItem('departureAirline', 'American Airlines');
         };
+
+        document.getElementById('alternative1view').onclick = function() {
+            localStorage.setItem('airline', 'Ryanair');
+            localStorage.setItem('link', 'departureflights.html');
+        }
+        document.getElementById('alternative2view').onclick = function() {
+            localStorage.setItem('airline', 'American Airlines');
+            localStorage.setItem('link', 'departureflights.html');
+        }
     }
 
     document.getElementById('current').innerHTML = current;
+    document.getElementById('currentview').onclick = function() {
+        localStorage.setItem('airline', current);
+        localStorage.setItem('link', 'departureflights.html');
+    }
 }
 
 function setupReturns() {
@@ -105,6 +149,15 @@ function setupReturns() {
         document.getElementById('alternative2btn').onclick = function() {
             localStorage.setItem('returnAirline', 'Air France');
         };
+
+        document.getElementById('alternative1view').onclick = function() {
+            localStorage.setItem('airline', 'American Airlines');
+            localStorage.setItem('link', 'returnflights.html');
+        }
+        document.getElementById('alternative2view').onclick = function() {
+            localStorage.setItem('airline', 'Air France');
+            localStorage.setItem('link', 'returnflights.html');
+        }
     }
 
     else if (current == 'American Airlines') {
@@ -116,6 +169,15 @@ function setupReturns() {
         document.getElementById('alternative2btn').onclick = function() {
             localStorage.setItem('returnAirline', 'Air France');
         };
+
+        document.getElementById('alternative1view').onclick = function() {
+            localStorage.setItem('airline', 'Ryanair');
+            localStorage.setItem('link', 'returnflights.html');
+        }
+        document.getElementById('alternative2view').onclick = function() {
+            localStorage.setItem('airline', 'Air France');
+            localStorage.setItem('link', 'returnflights.html');
+        }
     }
 
     else if (current == 'Air France') {
@@ -127,9 +189,22 @@ function setupReturns() {
         document.getElementById('alternative2btn').onclick = function() {
             localStorage.setItem('returnAirline', 'American Airlines');
         };
+
+        document.getElementById('alternative1view').onclick = function() {
+            localStorage.setItem('airline', 'Ryanair');
+            localStorage.setItem('link', 'returnflights.html');
+        }
+        document.getElementById('alternative2view').onclick = function() {
+            localStorage.setItem('airline', 'American Airlines');
+            localStorage.setItem('link', 'returnflights.html');
+        }
     }
 
     document.getElementById('current').innerHTML = current;
+    document.getElementById('currentview').onclick = function() {
+        localStorage.setItem('airline', current);
+        localStorage.setItem('link', 'returnflights.html');
+    }
 }
 
 function setupHotels() {
@@ -152,6 +227,15 @@ function setupHotels() {
             localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
             localStorage.setItem('hotelRating', '95% Recommended on TripAdvisor');
         };
+
+        document.getElementById('alt1View').onclick = function() {
+            localStorage.setItem('hotel', 'Le Hotel');
+            localStorage.setItem('link', 'hotels.html');
+        };
+        document.getElementById('alt2View').onclick = function() {
+            localStorage.setItem('hotel', 'Le Beau Hotel');
+            localStorage.setItem('link', 'hotels.html');
+        };
     }
 
     else if (current == 'Le Hotel') {
@@ -171,6 +255,15 @@ function setupHotels() {
             localStorage.setItem('hotelName', 'Le Beau Hotel');
             localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
             localStorage.setItem('hotelRating', '95% Recommended on TripAdvisor');
+        };
+
+        document.getElementById('alt1View').onclick = function() {
+            localStorage.setItem('hotel', 'Le Motel');
+            localStorage.setItem('link', 'hotels.html');
+        };
+        document.getElementById('alt2View').onclick = function() {
+            localStorage.setItem('hotel', 'Le Beau Hotel');
+            localStorage.setItem('link', 'hotels.html');
         };
     }
 
@@ -192,11 +285,25 @@ function setupHotels() {
             localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
             localStorage.setItem('hotelRating', '87% Recommended on TripAdvisor');
         };
+
+        document.getElementById('alt1View').onclick = function() {
+            localStorage.setItem('hotel', 'Le Motel');
+            localStorage.setItem('link', 'hotels.html');
+        };
+        document.getElementById('alt2View').onclick = function() {
+            localStorage.setItem('hotel', 'Le Hotel');
+            localStorage.setItem('link', 'hotels.html');
+        };
     }
 
     document.getElementById('currentName').innerHTML = current;
     document.getElementById('currentStars').innerHTML = localStorage.getItem('hotelStars');
     document.getElementById('currentRating').innerHTML = localStorage.getItem('hotelRating');
+
+    document.getElementById('currentView').onclick = function() {
+        localStorage.setItem('hotel', current);
+        localStorage.setItem('link', 'hotels.html');
+    };
 }
 
 function setupPurchase() {
@@ -243,6 +350,47 @@ function setupPurchase() {
 
     document.getElementById('flight').innerHTML = 'Flight: $' + numberWithCommas(flighttotal);
     document.getElementById('total').innerHTML = localStorage.getItem('total');
+}
+
+function setupView() {
+    document.getElementById('airline').innerHTML = localStorage.getItem('airline');
+    document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
+}
+
+function setupHotel() {
+    var name = localStorage.getItem('hotel');
+    document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
+    document.getElementById('name').innerHTML = name;
+
+    if (name == 'Le Motel') {
+        document.getElementById('stars').innerHTML = '3 Star Hotel';
+        document.getElementById('rating').innerHTML = '78% Recommended on TripAdvisor';
+        document.getElementById('misc').innerHTML = 'Close to CDG Airport';
+
+        document.getElementById('img1').setAttribute('src', 'pics/motel1.jpg');
+        document.getElementById('img2').setAttribute('src', 'pics/motel2.jpg');
+        document.getElementById('img3').setAttribute('src', 'pics/motel3.jpg');
+    }
+
+    else if (name == 'Le Hotel') {
+        document.getElementById('stars').innerHTML = '4 Star Hotel';
+        document.getElementById('rating').innerHTML = '87% Recommended on TripAdvisor';
+        document.getElementById('misc').innerHTML = 'Near great authentic French restaurants';
+
+        document.getElementById('img1').setAttribute('src', 'pics/hotel1.jpg');
+        document.getElementById('img2').setAttribute('src', 'pics/hotel2.jpg');
+        document.getElementById('img3').setAttribute('src', 'pics/hotel3.jpg');
+    }
+
+    else if (name == 'Le Beau Hotel') {
+        document.getElementById('stars').innerHTML = '5 Star Hotel';
+        document.getElementById('rating').innerHTML = '95% Recommended on TripAdvisor';
+        document.getElementById('misc').innerHTML = 'Views of the Eiffel Tower';
+
+        document.getElementById('img1').setAttribute('src', 'pics/bhotel1.jpg');
+        document.getElementById('img2').setAttribute('src', 'pics/bhotel2.jpg');
+        document.getElementById('img3').setAttribute('src', 'pics/bhotel3.jpg');
+    }
 }
 
 function calcTotal() {
