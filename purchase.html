@@ -9,14 +9,17 @@
 
         <!-- Import Font Awesome -->
         <script src="https://use.fontawesome.com/4560984a5d.js"></script>
+
+        <!-- Import helper functions -->
+        <script src="js/helper.js"></script>
     </head>
-    <body>
+    <body onload="setupPurchase()">
         <div class="container-fluid">
             <a class="btn-secondary fa fa-arrow-left fa-2x" href="details.html"></a>
             <h1 class="text-center">Summary</h1>
-            <h2>Hotel: $220 x 9 nights = $1,980</h2>
-            <h2>Flight: $1,220 = $1,220</h2>
-            <h2>Total: $3,200</h2>
+            <h2 id="hotel">Hotel: $1,800</h2>
+            <h2 id="flight">Flight: $1,400</h2>
+            <h2 id="total">Total: $3,200</h2>
             <hr>
             <h2>Billing Information</h2>
             <h3>Name</h3>
@@ -27,6 +30,7 @@
             <input type="text"/>
             <h3>Expiration Date</h3>
             <input type="text"/>
+            <br><br>
             <h2>Billing Address</h2>
             <h3>Address 1</h3>
             <input type="text"/>
@@ -43,6 +47,7 @@
             <div class="text-center">
                 <a role="button" class="btn btn-primary" href="confirmation.html">Complete Purchase</a>
             </div>
+            <br>
         </div>
     </body>
 </html>

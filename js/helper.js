@@ -1,3 +1,9 @@
+// Taken from StackOverflow
+// https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function setupPackages() {
     document.getElementById('basic').onclick = function() {
         choosePackage('basic');
@@ -45,7 +51,9 @@ function setupDetails() {
     document.getElementById('hotelStars').innerHTML = localStorage.getItem('hotelStars');
     document.getElementById('hotelRating').innerHTML = localStorage.getItem('hotelRating');
     document.getElementById('returnAirline').innerHTML = localStorage.getItem('returnAirline');
-    document.getElementById('total').innerHTML = localStorage.getItem('total');
+    document.getElementById('total').innerHTML = 'Total: $' + numberWithCommas(calcTotal());
+
+    localStorage.setItem('total', document.getElementById('total').innerHTML);
 }
 
 function setupDepartures() {
@@ -189,4 +197,95 @@ function setupHotels() {
     document.getElementById('currentName').innerHTML = current;
     document.getElementById('currentStars').innerHTML = localStorage.getItem('hotelStars');
     document.getElementById('currentRating').innerHTML = localStorage.getItem('hotelRating');
+}
+
+function setupPurchase() {
+    var hotel = localStorage.getItem('hotelName');
+    var depflight = localStorage.getItem('departureAirline');
+    var retflight = localStorage.getItem('returnAirline');
+    var flighttotal = 0;
+
+    if (hotel == 'Le Motel') {
+        document.getElementById('hotel').innerHTML = 'Hotel: $1,000';
+    }
+
+    else if (hotel == 'Le Hotel') {
+        document.getElementById('hotel').innerHTML = 'Hotel: $1,400';
+    }
+
+    else if (hotel == 'Le Beau Hotel') {
+        document.getElementById('hotel').innerHTML = 'Hotel: $1,800';
+    }
+
+    if (depflight == 'Ryanair') {
+        flighttotal += 500;
+    }
+
+    else if (depflight == 'American Airlines') {
+        flighttotal += 650;
+    }
+
+    else if (depflight == 'Air France') {
+        flighttotal += 700;
+    }
+
+    if (retflight == 'Ryanair') {
+        flighttotal += 500;
+    }
+
+    else if (retflight == 'American Airlines') {
+        flighttotal += 650;
+    }
+
+    else if (retflight == 'Air France') {
+        flighttotal += 700;
+    }
+
+    document.getElementById('flight').innerHTML = 'Flight: $' + numberWithCommas(flighttotal);
+    document.getElementById('total').innerHTML = localStorage.getItem('total');
+}
+
+function calcTotal() {
+    var hotel = localStorage.getItem('hotelName');
+    var depflight = localStorage.getItem('departureAirline');
+    var retflight = localStorage.getItem('returnAirline');
+    var total = 0;
+
+    if (hotel == 'Le Motel') {
+        total += 1000;
+    }
+
+    else if (hotel == 'Le Hotel') {
+        total += 1400;
+    }
+
+    else if (hotel == 'Le Beau Hotel') {
+        total += 1800;
+    }
+
+    if (depflight == 'Ryanair') {
+        total += 500;
+    }
+
+    else if (depflight == 'American Airlines') {
+        total += 650;
+    }
+
+    else if (depflight == 'Air France') {
+        total += 700;
+    }
+
+    if (retflight == 'Ryanair') {
+        total += 500;
+    }
+
+    else if (retflight == 'American Airlines') {
+        total += 650;
+    }
+
+    else if (retflight == 'Air France') {
+        total += 700;
+    }
+
+    return total;
 }
