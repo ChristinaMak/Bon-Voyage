@@ -463,7 +463,7 @@ function setupHotels() {
         };
     }
 
-    else if (current_num == '1') {
+    else if (current_num == '2') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('basicHot')));
