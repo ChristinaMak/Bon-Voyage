@@ -24,87 +24,75 @@
     <nav class="navbar navbar-light bg-faded fixed-top" style="background-color: #d3f3fe;">
         <a class="btn fa fa-arrow-left fa-2x" href="packages.html"></a>
     </nav>
-    <div class="container-fluid">
-        <h1 class="text-center">Your Package</h1>
+    <div class="container-fluid text-center">
+        <h1>Your Package</h1>
         <h2>Departure Flight</h2>
         <div class="card text-center">
             <div class="card-block">
-                <div class="row">
-                    <div class="col-sm-6 align-self-center">
-                        <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm-6 align-self-center">
-                        <div class="row">
-                            <h3>11:10 A.M. - 7:45 A.M.</h3>
-                        </div>
-                        <div class="row">
-                            <h3>12h 35m SAN-CDG</h3>
-                        </div>
-                        <div class="row">
-                            <h3 id="departureAirline">Air France</h3>
-                        </div>
-                    </div>
+                <div class="row justify-content-center">
+                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
                 </div>
-                <a id="departure" role="button" class="btn btn-success" href="departure.html">View Details</a>
-                <a role="button" class="btn btn-primary" href="departureflights.html">Edit</a>
+                <div class="row justify-content-center">
+                    <h3>11:10 A.M. - 7:45 A.M.</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <h3>12h 35m SAN-CDG</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <h3 id="departureAirline">Air France</h3>
+                </div>
             </div>
+            <a id="departure" role="button" class="btn btn-success" href="departure.html">View Details</a>
+            <a role="button" class="btn btn-primary" href="departureflights.html">Edit</a>
         </div>
         <br>
         <h2>Hotel</h2>
         <div class="card text-center">
             <div class="card text-center">
                 <div class="card-block">
-                    <div class="row">
-                        <div class="col-sm-6 align-self-center">
-                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-sm-6 align-self-center">
-                            <div class="row">
-                                <h3 id="hotelName">Le Beau Hotel</h3>
-                            </div>
-                            <div id="hotelStars" class="row">
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                            </div>
-                            <div class="row">
-                                <h3 id="hotelRating">95% Recommended on TripAdvisor</h3>
-                            </div>
-                        </div>
+                    <div class="row justify-content-center">
+                        <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
                     </div>
-                    <a id="hotel" role="button" class="btn btn-success" href="hotel.html">View Details</a>
-                    <a role="button" class="btn btn-primary" href="hotels.html">Edit</a>
+                    <div class="row justify-content-center">
+                        <h3 id="hotelName">Le Beau Hotel</h3>
+                    </div>
+                    <div id="hotelStars" class="row justify-content-center">
+                        <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="row justify-content-center">
+                        <h3 id="hotelRating">95% Recommended on TripAdvisor</h3>
+                    </div>
                 </div>
+                <a id="hotel" role="button" class="btn btn-success" href="hotel.html">View Details</a>
+                <a role="button" class="btn btn-primary" href="hotels.html">Edit</a>
             </div>
         </div>
         <br>
         <h2>Return Flight</h2>
         <div class="card text-center">
             <div class="card-block">
-                <div class="row">
-                    <div class="col-sm-6 align-self-center">
-                        <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm-6 align-self-center">
-                        <div class="row">
-                            <h3>10:40 A.M. - 5:46 A.M.</h3>
-                        </div>
-                        <div class="row">
-                            <h3>15h 6m CDG-SAN</h3>
-                        </div>
-                        <div class="row">
-                            <h3 id="returnAirline">Air France</h3>
-                        </div>
-                    </div>
+                <div class="row justify-content-center">
+                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
                 </div>
-                <a id="return" role="button" class="btn btn-success" href="return.html">View Details</a>
-                <a role="button" class="btn btn-primary" href="returnflights.html">Edit</a>
+                <div class="row justify-content-center">
+                    <h3>10:40 A.M. - 5:46 A.M.</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <h3>15h 6m CDG-SAN</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <h3 id="returnAirline">Air France</h3>
+                </div>
             </div>
+            <a id="return" role="button" class="btn btn-success" href="return.html">View Details</a>
+            <a role="button" class="btn btn-primary" href="returnflights.html">Edit</a>
         </div>
         <br>
         <h2 id="total" class="text-center">Total: $3,200</h2>
         <div class="text-center">
-            <a role="button" class="btn btn-primary" href="purchase.html">Purchase</a>
+            <a role="button" class="fa-2x btn btn-primary" href="purchase.html">Purchase</a>
         </div>
         <br>
     </div>
