@@ -396,17 +396,9 @@ function setupPurchase() {
     document.getElementById('total').innerHTML = localStorage.getItem('total');
 }
 
-function setupDeparture() {
-    document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
-    setupView(0);
-}
-
-function setupReturn() {
-    document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
-    setupView(1);
-}
-
 function setupView(type) {
+    document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
+
     var index = -1;
     var data = {};
 
