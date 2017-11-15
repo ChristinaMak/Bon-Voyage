@@ -26,6 +26,14 @@
         <i class="btn fa fa-arrow-left fa-2x" style="color: #d3f3fe;" aria-hidden="true"></i>
     </nav>
     <div class="container-fluid">
+        <!-- progress bar from https://codepen.io/atakan/pen/gqbIz -->
+        <ul id="progressbar">
+            <li class="active"><a href="index.html">Departing City</a></li>
+            <li><a href="travelingto.html">Destination City</a></li>
+            <li><a href="dates.html">Travel Dates</a></li>
+            <li><a href="party.html">Number of People</a></li>
+        </ul>
+
         <h1 class="text-center">Where are you traveling from?</h1>
 
         <div class="form-group">
@@ -43,7 +51,7 @@
 
         <div class = "row justify-content-md-center">
             <div class="col-12 col-md-auto">
-                <button type="button" class="btn btn-lg" onclick="moveNumbers('San Diego')">
+                <button type="button" class="btn btn-lg" id="location" onclick="moveNumbers('San Diego')">
                     <img src="https://image.flaticon.com/icons/svg/60/60834.svg" width = "29" height = "29"/>
                     &nbsp;Find your location
                 </button>
