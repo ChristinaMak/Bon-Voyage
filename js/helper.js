@@ -16,6 +16,11 @@ function setupPackages() {
     };
 }
 
+function moveNumbers(num) {
+    var txt= num;
+    document.getElementById("stuff").value=txt;
+}
+
 function choosePackage(package) {
     if (package == 'basic') {
         localStorage.setItem('departureAirline', "Ryanair");

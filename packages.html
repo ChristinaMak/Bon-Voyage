@@ -1,117 +1,124 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Import Bootstrap 4 -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Import Font Awesome -->
-        <script src="https://use.fontawesome.com/4560984a5d.js"></script>
+    <!-- Import Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-        <!-- Import helper functions -->
-        <script src="js/helper.js"></script>
-    </head>
-    <body onload="setupPackages()">
-        <div class="container-fluid">
-            <a class="btn fa fa-arrow-left fa-2x" href="party.html"></a>
+    <!-- Import Font Awesome -->
+    <script src="https://use.fontawesome.com/4560984a5d.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Import helper functions -->
+    <script src="js/helper.js"></script>
+
+    <title>Packages</title>
+</head>
+<body onload="setupPackages()">
+    <div class="container-fluid">
+        <a class="btn fa fa-arrow-left fa-2x" href="party.html"></a>
+    </div>
+    <div class="container-fluid">
+        <h1 class="text-center">Packages</h1>
+        <h2>Basic</h2>
+        <div class="card text-center">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-sm-4 align-self-center">
+                        <div class="row">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row">
+                            <h4>Ryanair</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 align-self-center">
+                        <div class="row">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row">
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 align-self-center">
+                        <p class="fa-5x text-center">$2,000</p>
+                    </div>
+                </div>
+                <a id="basic" role="button" class="btn btn-primary" href="details.html">Choose</a>
+            </div>
         </div>
-        <div class="container-fluid">
-            <h1 class="text-center">Packages</h1>
-            <h2>Basic</h2>
-            <div class="card text-center">
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-sm-4 align-self-center">
-                            <div class="row">
-                                <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
-                            </div>
-                            <div class="row">
-                                <h4>Ryanair</h4>
-                            </div>
+        <br>
+        <h2>Premium</h2>
+        <div class="card text-center">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-sm-4 align-self-center">
+                        <div class="row">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
                         </div>
-                        <div class="col-sm-4 align-self-center">
-                            <div class="row">
-                                <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 align-self-center">
-                            <p class="fa-5x text-center">$2,000</p>
+                        <div class="row">
+                            <h4>American Airlines</h4>
                         </div>
                     </div>
-                    <a id="basic" role="button" class="btn btn-primary" href="details.html">Choose</a>
-                </div>
-            </div>
-            <br>
-            <h2>Premium</h2>
-            <div class="card text-center">
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-sm-4 align-self-center">
-                            <div class="row">
-                                <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
-                            </div>
-                            <div class="row">
-                                <h4>American Airlines</h4>
-                            </div>
+                    <div class="col-sm-4 align-self-center">
+                        <div class="row">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
                         </div>
-                        <div class="col-sm-4 align-self-center">
-                            <div class="row">
-                                <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 align-self-center">
-                            <p class="fa-5x text-center">$2,700</p>
+                        <div class="row">
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <a id="premium" role="button" class="btn btn-primary" href="details.html">Choose</a>
-                </div>
-            </div>
-            <br>
-            <h2>Luxury</h2>
-            <div class="card text-center">
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-sm-4 align-self-center">
-                            <div class="row">
-                                <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
-                            </div>
-                            <div class="row">
-                                <h4>Air France</h4>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 align-self-center">
-                            <div class="row">
-                                <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 align-self-center">
-                            <p class="fa-5x text-center">$3,200</p>
-                        </div>
+                    <div class="col-sm-4 align-self-center">
+                        <p class="fa-5x text-center">$2,700</p>
                     </div>
-                    <a id="luxury" role="button" class="btn btn-primary" href="details.html">Choose</a>
                 </div>
+                <a id="premium" role="button" class="btn btn-primary" href="details.html">Choose</a>
             </div>
-            <br>
         </div>
-    </body>
+        <br>
+        <h2>Luxury</h2>
+        <div class="card text-center">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-sm-4 align-self-center">
+                        <div class="row">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row">
+                            <h4>Air France</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 align-self-center">
+                        <div class="row">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row">
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 align-self-center">
+                        <p class="fa-5x text-center">$3,200</p>
+                    </div>
+                </div>
+                <a id="luxury" role="button" class="btn btn-primary" href="details.html">Choose</a>
+            </div>
+        </div>
+        <br>
+    </div>
+</body>
 </html>

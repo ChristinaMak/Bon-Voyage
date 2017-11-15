@@ -1,91 +1,98 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Import Bootstrap 4 -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Import Font Awesome -->
-        <script src="https://use.fontawesome.com/4560984a5d.js"></script>
+    <!-- Import Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-        <!-- Import helper functions -->
-        <script src="js/helper.js"></script>
-    </head>
-    <body onload="setupPurchase()">
-        <div class="container-fluid">
-            <a class="btn fa fa-arrow-left fa-2x" href="details.html"></a>
-        </div>
-        <div class="container-fluid">
-            <h1 class="text-center">Summary</h1>
-            <h2 id="hotel">Hotel: $1,800</h2>
-            <h2 id="flight">Flight: $1,400</h2>
-            <h2 id="total">Total: $3,200</h2>
-            <hr>
-            <div class="row">
-                <div class="col-sm-6">
-                    <h2>Billing Information</h2>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h3>Name</h3>
-                            <input type="text"/>
-                        </div>
-                        <div class="col-sm-6">
-                            <h3>Card Number</h3>
-                            <input type="text"/>
-                        </div>
+    <!-- Import Font Awesome -->
+    <script src="https://use.fontawesome.com/4560984a5d.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Import helper functions -->
+    <script src="js/helper.js"></script>
+
+    <title>Purchase Package</title>
+</head>
+<body onload="setupPurchase()">
+    <div class="container-fluid">
+        <a class="btn fa fa-arrow-left fa-2x" href="details.html"></a>
+    </div>
+    <div class="container-fluid">
+        <h1 class="text-center">Summary</h1>
+        <h2 id="hotel">Hotel: $1,800</h2>
+        <h2 id="flight">Flight: $1,400</h2>
+        <h2 id="total">Total: $3,200</h2>
+        <hr>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Billing Information</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Name</h3>
+                        <input type="text"/>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h3>CVV</h3>
-                            <input type="text"/>
-                        </div>
-                        <div class="col-sm-6">
-                            <h3>Expiration Date</h3>
-                            <input type="text"/>
-                        </div>
+                    <div class="col-sm-6">
+                        <h3>Card Number</h3>
+                        <input type="text"/>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <h2>Billing Address</h2>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h3>Address 1</h3>
-                            <input type="text"/>
-                        </div>
-                        <div class="col-sm-6">
-                            <h3>Address 2</h3>
-                            <input type="text"/>
-                        </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>CVV</h3>
+                        <input type="text"/>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h3>Billing Country</h3>
-                            <input type="text"/>
-                        </div>
-                        <div class="col-sm-6">
-                            <h3>Billing State</h3>
-                            <input type="text"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h3>Billing City</h3>
-                            <input type="text"/>
-                        </div>
-                        <div class="col-sm-6">
-                            <h3>Billing Zip Code</h3>
-                            <input type="text"/>
-                        </div>
+                    <div class="col-sm-6">
+                        <h3>Expiration Date</h3>
+                        <input type="text"/>
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="text-center">
-                <a role="button" class="btn btn-primary" href="confirmation.html">Complete Purchase</a>
+            <div class="col-sm-6">
+                <h2>Billing Address</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Address 1</h3>
+                        <input type="text"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>Address 2</h3>
+                        <input type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Billing Country</h3>
+                        <input type="text"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>Billing State</h3>
+                        <input type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Billing City</h3>
+                        <input type="text"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>Billing Zip Code</h3>
+                        <input type="text"/>
+                    </div>
+                </div>
             </div>
-            <br>
         </div>
-    </body>
+        <br>
+        <div class="text-center">
+            <a role="button" class="btn btn-primary" href="confirmation.html">Complete Purchase</a>
+        </div>
+        <br>
+    </div>
+</body>
 </html>
