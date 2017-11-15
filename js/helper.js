@@ -166,6 +166,7 @@ function setupDetails() {
     document.getElementById('hotel').onclick = function() {
         localStorage.setItem('link', 'details.html');
         localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
+        localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
     };
     document.getElementById('return').onclick = function() {
         localStorage.setItem('link', 'details.html');
@@ -395,6 +396,7 @@ function setupHotels() {
     document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'hotels.html');
         localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
+        localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
     };
 
     if (current_num == '0') {
@@ -420,10 +422,12 @@ function setupHotels() {
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('premHot'));
+            localStorage.setItem('chosenHotNum', '1');
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('luxHot'));
+            localStorage.setItem('chosenHotNum', '2');
         };
     }
 
@@ -450,10 +454,12 @@ function setupHotels() {
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('basicHot'));
+            localStorage.setItem('chosenHotNum', '0');
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('luxHot'));
+            localStorage.setItem('chosenHotNum', '2');
         };
     }
 
@@ -480,10 +486,12 @@ function setupHotels() {
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('basicHot'));
+            localStorage.setItem('chosenHotNum', '0');
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('premHot'));
+            localStorage.setItem('chosenHotNum', '1');
         };
     }
 }
@@ -520,6 +528,7 @@ function setupView(type) {
 
 function setupHotel() {
     var data = JSON.parse(localStorage.getItem('chosenHotel'));
+    var index = localStorage.getItem('chosenHotNum')
     var parentDiv = $('#info');
     var template = Handlebars.compile(document.getElementById('infoTemplate').innerHTML);
     var html = template(data);
@@ -534,13 +543,13 @@ function setupHotel() {
         document.getElementById('img3').setAttribute('src', 'pics/motel3.jpg');
     }
 
-    else if (index == 'Le Hotel') {
+    else if (index == '1') {
         document.getElementById('img1').setAttribute('src', 'pics/hotel1.jpg');
         document.getElementById('img2').setAttribute('src', 'pics/hotel2.jpg');
         document.getElementById('img3').setAttribute('src', 'pics/hotel3.jpg');
     }
 
-    else if (index == 'Le Beau Hotel') {
+    else if (index == '2') {
         document.getElementById('img1').setAttribute('src', 'pics/bhotel1.jpg');
         document.getElementById('img2').setAttribute('src', 'pics/bhotel2.jpg');
         document.getElementById('img3').setAttribute('src', 'pics/bhotel3.jpg');
