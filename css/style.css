@@ -27,7 +27,7 @@
   min-height: 100px;
   width: 100%;
   text-align: center;
-  font-size: 24px;  
+  font-size: 24px;
 }
 
 .form-control {
@@ -92,4 +92,8 @@
 #progressbar li.active:before,  #progressbar li.active:after{
 	background: #27AE60;
 	color: white;
+}
+
+body {
+    padding-top: 5em;
 }
