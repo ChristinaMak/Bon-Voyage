@@ -62,12 +62,15 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <!-- <h1 class="text-center">Le Beau Hotel</h1> -->
-            <p id="airline" class="lead">Ryanair</p>
-            <p class="lead">Boeing 787</p>
-            <p class="lead">10:40 A.M. - 5:46 A.M.</p>
-            <p class="lead">15h 6m CDG-SAN</p>
-            <p class="lead">One free carry-on</p>
+            <div id="info">
+                <script id="infoTemplate" type="text/x-handlebars-template">
+                    <p class="lead">{{airline}}</p>
+                    <p class="lead">{{plane}}</p>
+                    <p class="lead">{{time}}</p>
+                    <p class="lead">{{duration}}</p>
+                    <p class="lead">{{misc}}</p>
+                </script>
+            </div>
         </div>
     </div>
 </body>

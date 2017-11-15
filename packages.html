@@ -31,78 +31,80 @@
         <h1>Packages</h1>
         <br>
         <h2>Basic</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row justify-content-center">
-                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        <div id="basicCard">
+            <script id="basicTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h4>{{airline}}</h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            {{{stars}}}
+                        </div>
+                        <div class="row justify-content-center">
+                            <p class="fa-5x text-center">${{price}}</p>
+                        </div>
+                    </div>
+                    <a id="basic" role="button" class="btn btn-primary" href="details.html">Choose</a>
                 </div>
-                <div class="row justify-content-center">
-                    <h4>Ryanair</h4>
-                </div>
-                <div class="row justify-content-center">
-                    <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-                </div>
-                <div class="row justify-content-center">
-                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                </div>
-                <div class="row justify-content-center">
-                    <p class="fa-5x text-center">$2,000</p>
-                </div>
-            </div>
-            <a id="basic" role="button" class="btn btn-primary" href="details.html">Choose</a>
+            </script>
         </div>
         <br>
         <h2>Premium</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row justify-content-center">
-                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        <div id="premiumCard">
+            <script id="premiumTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h4>{{airline}}</h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            {{{stars}}}
+                        </div>
+                        <div class="row justify-content-center">
+                            <p class="fa-5x text-center">${{price}}</p>
+                        </div>
+                    </div>
+                    <a id="premium" role="button" class="btn btn-primary" href="details.html">Choose</a>
                 </div>
-                <div class="row justify-content-center">
-                    <h4>American Airlines</h4>
-                </div>
-                <div class="row justify-content-center">
-                    <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-                </div>
-                <div class="row justify-content-center">
-                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                </div>
-                <div class="row justify-content-center">
-                    <p class="fa-5x text-center">$2,700</p>
-                </div>
-            </div>
-            <a id="premium" role="button" class="btn btn-primary" href="details.html">Choose</a>
+            </script>
         </div>
         <br>
-        <h2>Luxury</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row justify-content-center">
-                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        <div id="luxuryCard">
+            <script id="luxuryTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h4>{{airline}}</h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            {{{stars}}}
+                        </div>
+                        <div class="row justify-content-center">
+                            <p class="fa-5x text-center">${{price}}</p>
+                        </div>
+                    </div>
+                    <a id="luxury" role="button" class="btn btn-primary" href="details.html">Choose</a>
                 </div>
-                <div class="row justify-content-center">
-                    <h4>Air France</h4>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-            </div>
-            <div class="row justify-content-center">
-                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-            </div>
-            <div class="row justify-content-center">
-                <p class="fa-5x text-center">$3,200</p>
-            </div>
-            <a id="luxury" role="button" class="btn btn-primary" href="details.html">Choose</a>
+            </script>
         </div>
     </div>
     <br>

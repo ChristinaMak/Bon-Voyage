@@ -22,6 +22,36 @@ function numberWithCommas(x) {
 }
 
 function setupPackages() {
+    var parentDiv = $('#basicCard');
+    var template = Handlebars.compile(document.getElementById('basicTemplate').innerHTML);
+    var data = {
+        'airline': departures[0].airline,
+        'stars': hotels[0].stars,
+        'price': numberWithCommas(parseInt(departures[0].price) + parseInt(hotels[0].price) + parseInt(returns[0].price))
+    }
+    var html = template(data);
+    parentDiv.append(html);
+
+    parentDiv = $('#premiumCard');
+    template = Handlebars.compile(document.getElementById('premiumTemplate').innerHTML);
+    data = {
+        'airline': departures[1].airline,
+        'stars': hotels[1].stars,
+        'price': numberWithCommas(parseInt(departures[1].price) + parseInt(hotels[1].price) + parseInt(returns[1].price))
+    }
+    html = template(data);
+    parentDiv.append(html);
+
+    parentDiv = $('#luxuryCard');
+    template = Handlebars.compile(document.getElementById('luxuryTemplate').innerHTML);
+    data = {
+        'airline': departures[2].airline,
+        'stars': hotels[2].stars,
+        'price': numberWithCommas(parseInt(departures[2].price) + parseInt(hotels[2].price) + parseInt(returns[2].price))
+    }
+    html = template(data);
+    parentDiv.append(html);
+
     document.getElementById('basic').onclick = function() {
         choosePackage('basic');
     };
