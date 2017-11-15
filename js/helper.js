@@ -1,19 +1,20 @@
-var departures = [
-    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m SAN-CDG', 'airline': 'Ryanair', 'price': '500', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
-    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m SAN-CDG', 'airline': 'American Airlines', 'price': '650', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
-    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m SAN-CDG', 'airline': 'Air France', 'price': '700', 'plane': 'Boeing 787', 'misc': 'One free carry-on'}
-]
+var baseDepartures = [
+    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m', 'airline': 'Ryanair', 'price': '500', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
+    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m', 'airline': 'American Airlines', 'price': '650', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
+    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m', 'airline': 'Air France', 'price': '700', 'plane': 'Boeing 787', 'misc': 'One free carry-on'}
+];
 
-var hotels = [
-    {'hotel': 'Le Motel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '78% Recommended on TripAdvisor', 'price': '1000', 'starsString': '3', 'misc': 'Close to CDG Airport'},
-    {'hotel': 'Le Hotel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '87% Recommended on TripAdvisor', 'price': '1400', 'starsString': '4', 'misc': 'Near great authentic French restaurants'},
-    {'hotel': 'Le Beau Hotel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '95% Recommended on TripAdvisor', 'price': '1800', 'starsString': '5', 'misc': 'Views of the Eiffel Tower'}
-]
-var returns = [
-    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m CDG-SAN', 'airline': 'Ryanair', 'price': '500'},
-    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m CDG-SAN', 'airline': 'American Airlines', 'price': '650'},
-    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m CDG-SAN', 'airline': 'Air France', 'price': '700'}
-]
+var baseHotels = [
+    {'hotel': 'Le Motel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '78% Recommended on TripAdvisor', 'price': '70', 'starsString': '3', 'misc': 'Close to CDG Airport'},
+    {'hotel': 'Le Hotel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '87% Recommended on TripAdvisor', 'price': '300', 'starsString': '4', 'misc': 'Near great authentic French restaurants'},
+    {'hotel': 'Le Beau Hotel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '95% Recommended on TripAdvisor', 'price': '700', 'starsString': '5', 'misc': 'Views of the Eiffel Tower'}
+];
+
+var baseReturns = [
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'Ryanair', 'price': '500'},
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'American Airlines', 'price': '650'},
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'Air France', 'price': '700'}
+];
 
 // Taken from StackOverflow
 // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
@@ -21,7 +22,50 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function originCity() {
+    localStorage.setItem('origin', document.getElementById("originCity").value);
+}
+
+function destinationCity() {
+    localStorage.setItem('destination', document.getElementById("destinationCity").value);
+}
+
+function dates() {
+    var start = $('#datespicker').data('daterangepicker').startDate;
+    var end = $('#datespicker').data('daterangepicker').endDate;
+    var difference = end.diff(start, 'days');
+    localStorage.setItem('dates', difference);
+}
+
+function party() {
+    localStorage.setItem('party', document.getElementById('party').value);
+}
+
 function setupPackages() {
+    var departures = baseDepartures;
+    var hotels = baseHotels;
+    var returns = baseReturns;
+
+    for (i = 0; i < 3; i++) {
+        departures[i].duration += ' ' + localStorage.getItem('origin') + ' - ' + localStorage.getItem('destination');
+        departures[i].price = parseInt(departures[i].price) * parseInt(localStorage.getItem('party'));
+        returns[i].duration += ' ' + localStorage.getItem('destination') + ' - ' + localStorage.getItem('origin');
+        returns[i].price = parseInt(returns[i].price) * parseInt(localStorage.getItem('party'));
+        hotels[i].hotel += ' ' + localStorage.getItem('destination');
+        hotels[i].price = parseInt(hotels[i].price) * parseInt(localStorage.getItem('party')) * parseInt(localStorage.getItem('dates'));
+    }
+
+    localStorage.setItem('basicDep', JSON.stringify(departures[0]));
+    localStorage.setItem('premDep', JSON.stringify(departures[1]));
+    localStorage.setItem('luxDep', JSON.stringify(departures[2]));
+    localStorage.setItem('basicHot', JSON.stringify(hotels[0]));
+    localStorage.setItem('premHot', JSON.stringify(hotels[1]));
+    localStorage.setItem('luxHot', JSON.stringify(hotels[2]));
+    localStorage.setItem('basicRet', JSON.stringify(returns[0]));
+    localStorage.setItem('premRet', JSON.stringify(returns[1]));
+    localStorage.setItem('luxRet', JSON.stringify(returns[2]));
+
+
     var parentDiv = $('#basicCard');
     var template = Handlebars.compile(document.getElementById('basicTemplate').innerHTML);
     var data = {
@@ -63,45 +107,53 @@ function setupPackages() {
     };
 }
 
-function moveNumbers(num) {
-    var txt= num;
-    document.getElementById("stuff").value=txt;
+function findLocation(location) {
+    document.getElementById("originCity").value = location;
 }
 
 function choosePackage(package) {
     if (package == 'basic') {
-        localStorage.setItem('departure', '0');
-        localStorage.setItem('hotel', '0');
-        localStorage.setItem('return', '0');
+        localStorage.setItem('departure', localStorage.getItem('basicDep'));
+        localStorage.setItem('depNum', '0');
+        localStorage.setItem('hotel', localStorage.getItem('basicHot'));
+        localStorage.setItem('hotNum', '0');
+        localStorage.setItem('return', localStorage.getItem('basicRet'));
+        localStorage.setItem('retNum', '0');
     }
 
     else if (package == 'premium') {
-        localStorage.setItem('departure', '1');
-        localStorage.setItem('hotel', '1');
-        localStorage.setItem('return', '1');
+        localStorage.setItem('departure', localStorage.getItem('premDep'));
+        localStorage.setItem('depNum', '1');
+        localStorage.setItem('hotel', localStorage.getItem('premHot'));
+        localStorage.setItem('hotNum', '1');
+        localStorage.setItem('return', localStorage.getItem('premRet'));
+        localStorage.setItem('retNum', '1');
     }
 
     else if (package == 'luxury') {
-        localStorage.setItem('departure', '2');
-        localStorage.setItem('hotel', '2');
-        localStorage.setItem('return', '2');
+        localStorage.setItem('departure', localStorage.getItem('luxDep'));
+        localStorage.setItem('depNum', '2');
+        localStorage.setItem('hotel', localStorage.getItem('luxHot'));
+        localStorage.setItem('hotNum', '2');
+        localStorage.setItem('return', localStorage.getItem('luxRet'));
+        localStorage.setItem('retNum', '2');
     }
 }
 
 function setupDetails() {
     var parentDiv = $('#departureCard');
     var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
-    var html = template(departures[parseInt(localStorage.getItem('departure'))]);
+    var html = template(JSON.parse(localStorage.getItem('departure')));
     parentDiv.append(html);
 
     parentDiv = $('#hotelCard');
     template = Handlebars.compile(document.getElementById('hotelTemplate').innerHTML);
-    html = template(hotels[parseInt(localStorage.getItem('hotel'))]);
+    html = template(JSON.parse(localStorage.getItem('hotel')));
     parentDiv.append(html);
 
     parentDiv = $('#returnCard');
     template = Handlebars.compile(document.getElementById('returnTemplate').innerHTML);
-    html = template(returns[parseInt(localStorage.getItem('return'))]);
+    html = template(JSON.parse(localStorage.getItem('return')));
     parentDiv.append(html);
 
     document.getElementById('total').innerHTML = 'Total: $' + numberWithCommas(calcTotal());
@@ -122,307 +174,327 @@ function setupDetails() {
 }
 
 function setupDepartures() {
-    var current = localStorage.getItem('departure');
+    var current = JSON.parse(localStorage.getItem('departure'));
+    var current_num = localStorage.getItem('depNum');
 
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
-    var html = template(departures[parseInt(current)]);
+    var html = template(current);
     parentDiv.append(html);
 
     document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'departureflights.html');
-        localStorage.setItem('chosenDeparture', current);
+        localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
     };
 
-    if (current == '0') {
+    if (current_num == '0') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(departures[1]);
+        html = template(JSON.parse(localStorage.getItem('premDep')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(departures[2]);
+        html = template(JSON.parse(localStorage.getItem('luxDep')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('departure', '1');
+            localStorage.setItem('departure', localStorage.getItem('premDep'));
+            localStorage.setItem('depNum', '1');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('departure', '2');
+            localStorage.setItem('departure', localStorage.getItem('luxDep'));
+            localStorage.setItem('depNum', '2');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
-            localStorage.setItem('chosenDeparture', '1');
+            localStorage.setItem('chosenDeparture', localStorage.getItem('premDep'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
-            localStorage.setItem('chosenDeparture', '2');
+            localStorage.setItem('chosenDeparture', localStorage.getItem('luxDep'));
         };
     }
 
-    else if (current == '1') {
+    else if (current_num == '1') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(departures[0]);
+        html = template(JSON.parse(localStorage.getItem('basicDep')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(departures[2]);
+        html = template(JSON.parse(localStorage.getItem('luxDep')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('departure', '0');
+            localStorage.setItem('departure', localStorage.getItem('basicDep'));
+            localStorage.setItem('depNum', '0');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('departure', '2');
+            localStorage.setItem('departure', localStorage.getItem('luxDep'));
+            localStorage.setItem('depNum', '2');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
-            localStorage.setItem('chosenDeparture', '0');
+            localStorage.setItem('chosenDeparture', localStorage.getItem('basicDep'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
-            localStorage.setItem('chosenDeparture', '2');
+            localStorage.setItem('chosenDeparture', localStorage.getItem('luxDep'));
         };
     }
 
-    else if (current == '0') {
+    else if (current_num == '2') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(departures[0]);
+        html = template(JSON.parse(localStorage.getItem('basicDep')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(departures[1]);
+        html = template(JSON.parse(localStorage.getItem('premDep')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('departure', '0');
+            localStorage.setItem('departure', localStorage.getItem('basicDep'));
+            localStorage.setItem('depNum', '0');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('departure', '1');
+            localStorage.setItem('departure', localStorage.getItem('premDep'));
+            localStorage.setItem('depNum', '1');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
-            localStorage.setItem('chosenDeparture', '0');
+            localStorage.setItem('chosenDeparture', localStorage.getItem('basicDep'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
-            localStorage.setItem('chosenDeparture', '1');
+            localStorage.setItem('chosenDeparture', localStorage.getItem('premDep'));
         };
     }
 }
 
 function setupReturns() {
-    var current = localStorage.getItem('return');
+    var current = JSON.parse(localStorage.getItem('return'));
+    var current_num = localStorage.getItem('retNum');
 
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
-    var html = template(returns[parseInt(current)]);
+    var html = template(current);
     parentDiv.append(html);
 
     document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'returnflights.html');
-        localStorage.setItem('chosenReturn', current);
+        localStorage.setItem('chosenReturn', localStorage.getItem('return'));
     };
 
-    if (current == '0') {
+    if (current_num == '0') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(returns[1]);
+        html = template(JSON.parse(localStorage.getItem('premRet')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(returns[2]);
+        html = template(JSON.parse(localStorage.getItem('luxRet')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('return', '1');
+            localStorage.setItem('return', localStorage.getItem('premRet'));
+            localStorage.setItem('retNum', '1');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('return', '2');
+            localStorage.setItem('return', localStorage.getItem('luxRet'));
+            localStorage.setItem('retNum', '2');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
-            localStorage.setItem('chosenReturn', '1');
+            localStorage.setItem('chosenReturn', localStorage.getItem('premRet'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
-            localStorage.setItem('chosenReturn', '2');
+            localStorage.setItem('chosenReturn', localStorage.getItem('luxRet'));
         };
     }
 
-    else if (current == '1') {
+    else if (current_num == '1') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(returns[0]);
+        html = template(JSON.parse(localStorage.getItem('basicRet')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(returns[2]);
+        html = template(JSON.parse(localStorage.getItem('luxRet')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('return', '0');
+            localStorage.setItem('return', localStorage.getItem('basicRet'));
+            localStorage.setItem('retNum', '0');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('return', '2');
+            localStorage.setItem('return', localStorage.getItem('luxRet'));
+            localStorage.setItem('retNum', '2');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
-            localStorage.setItem('chosenReturn', '0');
+            localStorage.setItem('chosenReturn', localStorage.getItem('basicRet'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
-            localStorage.setItem('chosenReturn', '2');
+            localStorage.setItem('chosenReturn', localStorage.getItem('luxRet'));
         };
     }
 
-    else if (current == '2') {
+    else if (current_num == '2') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(returns[0]);
+        html = template(JSON.parse(localStorage.getItem('basicRet')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(returns[1]);
+        html = template(JSON.parse(localStorage.getItem('premRet')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('return', '0');
+            localStorage.setItem('return', localStorage.getItem('basicRet'));
+            localStorage.setItem('retNum', '0');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('return', '1');
+            localStorage.setItem('return', localStorage.getItem('premRet'));
+            localStorage.setItem('retNum', '1');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
-            localStorage.setItem('chosenReturn', '0');
+            localStorage.setItem('chosenReturn', localStorage.getItem('basicRet'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
-            localStorage.setItem('chosenReturn', '1');
+            localStorage.setItem('chosenReturn', localStorage.getItem('premRet'));
         };
     }
 }
 
 function setupHotels() {
-    var current = localStorage.getItem('hotel');
+    var current = JSON.parse(localStorage.getItem('hotel'));
+    var current_num = localStorage.getItem('hotNum');
 
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
-    var html = template(hotels[parseInt(current)]);
+    var html = template(current);
     parentDiv.append(html);
 
     document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'hotels.html');
-        localStorage.setItem('chosenHotel', current);
+        localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
     };
 
-    if (current == '0') {
+    if (current_num == '0') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(hotels[1]);
+        html = template(JSON.parse(localStorage.getItem('premHot')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(hotels[2]);
+        html = template(JSON.parse(localStorage.getItem('luxHot')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('hotel', '1');
+            localStorage.setItem('hotel', localStorage.getItem('premHot'));
+            localStorage.setItem('hotNum', '1');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('hotel', '2');
+            localStorage.setItem('hotel', localStorage.getItem('luxHot'));
+            localStorage.setItem('hotNum', '2');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
-            localStorage.setItem('chosenHotel', '1');
+            localStorage.setItem('chosenHotel', localStorage.getItem('premHot'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
-            localStorage.setItem('chosenHotel', '2');
+            localStorage.setItem('chosenHotel', localStorage.getItem('luxHot'));
         };
     }
 
-    else if (current == '1') {
+    else if (current_num == '1') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(hotels[0]);
+        html = template(JSON.parse(localStorage.getItem('basicHot')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(hotels[2]);
+        html = template(JSON.parse(localStorage.getItem('luxHot')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('hotel', '0');
+            localStorage.setItem('hotel', localStorage.getItem('basicHot'));
+            localStorage.setItem('hotNum', '0');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('hotel', '2');
+            localStorage.setItem('hotel', localStorage.getItem('luxHot'));
+            localStorage.setItem('hotNum', '2');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
-            localStorage.setItem('chosenHotel', '0');
+            localStorage.setItem('chosenHotel', localStorage.getItem('basicHot'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
-            localStorage.setItem('chosenHotel', '2');
+            localStorage.setItem('chosenHotel', localStorage.getItem('luxHot'));
         };
     }
 
-    else if (current == '2') {
+    else if (current_num == '1') {
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(hotels[0]);
+        html = template(JSON.parse(localStorage.getItem('basicHot')));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(hotels[1]);
+        html = template(JSON.parse(localStorage.getItem('premHot')));
         parentDiv.append(html);
 
         document.getElementById('alternativeBtn1').onclick = function() {
-            localStorage.setItem('hotel', '0');
+            localStorage.setItem('hotel', localStorage.getItem('basicHot'));
+            localStorage.setItem('hotNum', '0');
         };
         document.getElementById('alternativeBtn2').onclick = function() {
-            localStorage.setItem('hotel', '1');
+            localStorage.setItem('hotel', localStorage.getItem('premHot'));
+            localStorage.setItem('hotNum', '1');
         };
 
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
-            localStorage.setItem('chosenHotel', '0');
+            localStorage.setItem('chosenHotel', localStorage.getItem('basicHot'));
         };
         document.getElementById('alternativeView2').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
-            localStorage.setItem('chosenHotel', '1');
+            localStorage.setItem('chosenHotel', localStorage.getItem('premHot'));
         };
     }
 }
 
 function setupPurchase() {
-    var depFlight = localStorage.getItem('departure');
-    var hotel = localStorage.getItem('hotel');
-    var retFlight = localStorage.getItem('return');
-    var flighttotal = 0;
+    var depFlight = JSON.parse(localStorage.getItem('departure'));
+    var hotel = JSON.parse(localStorage.getItem('hotel'));
+    var retFlight = JSON.parse(localStorage.getItem('return'));
 
-    document.getElementById('hotel').innerHTML = 'Hotel: $' + numberWithCommas(parseInt(hotels[hotel].price));
-    document.getElementById('flight').innerHTML = 'Flight: $' + numberWithCommas(parseInt(departures[depFlight].price) + parseInt(returns[retFlight].price));
+    document.getElementById('hotel').innerHTML = 'Hotel: $' + numberWithCommas(parseInt(hotel.price));
+    document.getElementById('flight').innerHTML = 'Flight: $' + numberWithCommas(parseInt(depFlight.price) + parseInt(retFlight.price));
     document.getElementById('total').innerHTML = localStorage.getItem('total');
 }
 
@@ -433,13 +505,11 @@ function setupView(type) {
     var data = {};
 
     if (type == 0) {
-        index = localStorage.getItem('chosenDeparture');
-        data = departures[index];
+        data = JSON.parse(localStorage.getItem('chosenDeparture'));
     }
 
     else {
-        index = localStorage.getItem('chosenReturn');
-        data = returns[index];
+        data = JSON.parse(localStorage.getItem('chosenReturn'));
     }
 
     var parentDiv = $('#info');
@@ -449,14 +519,14 @@ function setupView(type) {
 }
 
 function setupHotel() {
-    var index = localStorage.getItem('chosenHotel');
+    var data = JSON.parse(localStorage.getItem('chosenHotel'));
     var parentDiv = $('#info');
     var template = Handlebars.compile(document.getElementById('infoTemplate').innerHTML);
-    var html = template(hotels[index]);
+    var html = template(data);
     parentDiv.append(html);
 
     document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
-    document.getElementById('name').innerHTML = hotels[index].hotel;
+    document.getElementById('name').innerHTML = data.hotel;
 
     if (index == '0') {
         document.getElementById('img1').setAttribute('src', 'pics/motel1.jpg');
@@ -478,9 +548,9 @@ function setupHotel() {
 }
 
 function calcTotal() {
-    var depFlight = localStorage.getItem('departure');
-    var hotel = localStorage.getItem('hotel');
-    var retFlight = localStorage.getItem('return');
+    var depFlight = JSON.parse(localStorage.getItem('departure'));
+    var hotel = JSON.parse(localStorage.getItem('hotel'));
+    var retFlight = JSON.parse(localStorage.getItem('return'));
 
-    return parseInt(departures[depFlight].price) + parseInt(hotels[hotel].price) + parseInt(returns[retFlight].price);
+    return parseInt(depFlight.price) + parseInt(hotel.price) + parseInt(retFlight.price);
 }

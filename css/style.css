@@ -21,7 +21,7 @@
   margin-bottom: 15%;
 }
 
-#stuff{
+.city-text-box {
   position: relative;
   display: block;
   min-height: 100px;
