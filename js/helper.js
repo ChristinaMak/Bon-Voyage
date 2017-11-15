@@ -11,9 +11,9 @@ var baseHotels = [
 ];
 
 var baseReturns = [
-    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'Ryanair', 'price': '500'},
-    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'American Airlines', 'price': '650'},
-    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'Air France', 'price': '700'}
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'Ryanair', 'price': '500', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'American Airlines', 'price': '650', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m', 'airline': 'Air France', 'price': '700', 'plane': 'Boeing 787', 'misc': 'One free carry-on'}
 ];
 
 // Taken from StackOverflow
