@@ -15,6 +15,9 @@
     <script src="https://use.fontawesome.com/4560984a5d.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Import Handlebars -->
+    <script src="js/handlebars-v4.0.11.js"></script>
+
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
 
@@ -27,60 +30,73 @@
     <div class="container-fluid text-center">
         <h1>Flights</h1>
         <h2>Current Flight</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row justify-content-center">
-                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        <div id="currentCard">
+            <script id="currentTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{time}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{duration}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{airline}}</h3>
+                        </div>
+                    </div>
+                    <a id="currentView" role="button" class="btn btn-success" href="departure.html">View Details</a>
                 </div>
-                <div class="row justify-content-center">
-                    <h3>11:10 A.M. - 7:45 A.M.</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3>12h 35m SAN-CDG</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3 id="current">Air France</h3>
-                </div>
-            </div>
-            <a id="currentview" role="button" class="btn btn-success" href="departure.html">View Details</a>
+            </script>
         </div>
         <br>
         <h2>Other Flight Options</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row justify-content-center">
-                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        <div id="alternativeCard1">
+            <script id="alternativeTemplate1" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{time}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{duration}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{airline}}</h3>
+                        </div>
+                    </div>
+                    <a id="alternativeView1" role="button" class="btn btn-success" href="departure.html">View Details</a>
+                    <a id="alternativeBtn1" role="button" class="btn btn-primary" href="details.html">Choose</a>
                 </div>
-                <div class="row justify-content-center">
-                    <h3>11:10 A.M. - 7:45 A.M.</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3>12h 35m SAN-CDG</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3 id="alternative1">Ryanair</h3>
-                </div>
-            </div>
-            <a id="alternative1view" role="button" class="btn btn-success" href="departure.html">View Details</a>
-            <a id="alternative1btn" role="button" class="btn btn-primary" href="details.html">Choose</a>
+            </script>
         </div>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row justify-content-center">
-                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        <br>
+        <div id="alternativeCard2">
+            <script id="alternativeTemplate2" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{time}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{duration}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{airline}}</h3>
+                        </div>
+                    </div>
+                    <a id="alternativeView2" role="button" class="btn btn-success" href="departure.html">View Details</a>
+                    <a id="alternativeBtn2" role="button" class="btn btn-primary" href="details.html">Choose</a>
                 </div>
-                <div class="row justify-content-center">
-                    <h3>11:10 A.M. - 7:45 A.M.</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3>12h 35m SAN-CDG</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3 id="alternative2">American Airlines</h3>
-                </div>
-            </div>
-            <a id="alternative2view" role="button" class="btn btn-success" href="departure.html">View Details</a>
-            <a id="alternative2btn" role="button" class="btn btn-primary" href="details.html">Choose</a>
+            </script>
         </div>
         <br>
     </div>

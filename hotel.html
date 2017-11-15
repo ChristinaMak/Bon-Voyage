@@ -15,6 +15,9 @@
     <script src="https://use.fontawesome.com/4560984a5d.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Import Handlebars -->
+    <script src="js/handlebars-v4.0.11.js"></script>
+
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
 
@@ -26,7 +29,6 @@
     </nav>
     <div class="container-fluid">
         <h1 id="name" class="text-center">Le Beau Hotel</h1>
-
     </div>
 
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -58,10 +60,13 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <!-- <h1 class="text-center">Le Beau Hotel</h1> -->
-            <p id="stars" class="lead">5 Star Hotel</p>
-            <p id="rating" class="lead">4.9 / 5 TripAdvisor</p>
-            <p id="misc" class="lead">Views of the Eiffel Tower</p>
+            <div id="info">
+                <script id="infoTemplate" type="text/x-handlebars-template">
+                    <p class="lead">{{starsString}} Star Hotel</p>
+                    <p class="lead">{{rating}}</p>
+                    <p class="lead">{{misc}}</p>
+                </script>
+            </div>
         </div>
     </div>
 

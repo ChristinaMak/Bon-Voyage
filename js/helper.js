@@ -1,3 +1,20 @@
+var departures = [
+    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m SAN-CDG', 'airline': 'Ryanair', 'price': '500', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
+    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m SAN-CDG', 'airline': 'American Airlines', 'price': '650', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
+    {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m SAN-CDG', 'airline': 'Air France', 'price': '700', 'plane': 'Boeing 787', 'misc': 'One free carry-on'}
+]
+
+var hotels = [
+    {'hotel': 'Le Motel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '78% Recommended on TripAdvisor', 'price': '1000', 'starsString': '3', 'misc': 'Close to CDG Airport'},
+    {'hotel': 'Le Hotel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '87% Recommended on TripAdvisor', 'price': '1400', 'starsString': '4', 'misc': 'Near great authentic French restaurants'},
+    {'hotel': 'Le Beau Hotel', 'stars': '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>', 'rating': '95% Recommended on TripAdvisor', 'price': '1800', 'starsString': '5', 'misc': 'Views of the Eiffel Tower'}
+]
+var returns = [
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m CDG-SAN', 'airline': 'Ryanair', 'price': '500'},
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m CDG-SAN', 'airline': 'American Airlines', 'price': '650'},
+    {'time': '10:40 A.M. - 5:46 A.M.', 'duration': '15h 6m CDG-SAN', 'airline': 'Air France', 'price': '700'}
+]
+
 // Taken from StackOverflow
 // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function numberWithCommas(x) {
@@ -23,375 +40,415 @@ function moveNumbers(num) {
 
 function choosePackage(package) {
     if (package == 'basic') {
-        localStorage.setItem('departureAirline', "Ryanair");
-        localStorage.setItem('hotelName', 'Le Motel');
-        localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
-        localStorage.setItem('hotelRating', "78% Recommended on TripAdvisor");
-        localStorage.setItem('returnAirline', "Ryanair");
-        localStorage.setItem('total', "Total = $2,000");
+        localStorage.setItem('departure', '0');
+        localStorage.setItem('hotel', '0');
+        localStorage.setItem('return', '0');
     }
 
     else if (package == 'premium') {
-        localStorage.setItem('departureAirline', "American Airlines");
-        localStorage.setItem('hotelName', 'Le Hotel');
-        localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true">');
-        localStorage.setItem('hotelRating', "87% Recommended on TripAdvisor");
-        localStorage.setItem('returnAirline', "American Airlines");
-        localStorage.setItem('total', "Total = $2,700");
+        localStorage.setItem('departure', '1');
+        localStorage.setItem('hotel', '1');
+        localStorage.setItem('return', '1');
     }
 
     else if (package == 'luxury') {
-        localStorage.setItem('departureAirline', "Air France");
-        localStorage.setItem('hotelName', 'Le Beau Hotel');
-        localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
-        localStorage.setItem('hotelRating', "95% Recommended on TripAdvisor");
-        localStorage.setItem('returnAirline', "Air France");
-        localStorage.setItem('total', 'Total = $3,200');
+        localStorage.setItem('departure', '2');
+        localStorage.setItem('hotel', '2');
+        localStorage.setItem('return', '2');
     }
 }
 
 function setupDetails() {
-    document.getElementById('departureAirline').innerHTML = localStorage.getItem('departureAirline');
-    document.getElementById('hotelName').innerHTML = localStorage.getItem('hotelName');
-    document.getElementById('hotelStars').innerHTML = localStorage.getItem('hotelStars');
-    document.getElementById('hotelRating').innerHTML = localStorage.getItem('hotelRating');
-    document.getElementById('returnAirline').innerHTML = localStorage.getItem('returnAirline');
-    document.getElementById('total').innerHTML = 'Total: $' + numberWithCommas(calcTotal());
+    var parentDiv = $('#departureCard');
+    var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
+    var html = template(departures[parseInt(localStorage.getItem('departure'))]);
+    parentDiv.append(html);
 
+    parentDiv = $('#hotelCard');
+    template = Handlebars.compile(document.getElementById('hotelTemplate').innerHTML);
+    html = template(hotels[parseInt(localStorage.getItem('hotel'))]);
+    parentDiv.append(html);
+
+    parentDiv = $('#returnCard');
+    template = Handlebars.compile(document.getElementById('returnTemplate').innerHTML);
+    html = template(returns[parseInt(localStorage.getItem('return'))]);
+    parentDiv.append(html);
+
+    document.getElementById('total').innerHTML = 'Total: $' + numberWithCommas(calcTotal());
     localStorage.setItem('total', document.getElementById('total').innerHTML);
 
     document.getElementById('departure').onclick = function() {
         localStorage.setItem('link', 'details.html');
-        localStorage.setItem('airline', localStorage.getItem('departureAirline'));
+        localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
     };
     document.getElementById('hotel').onclick = function() {
         localStorage.setItem('link', 'details.html');
-        localStorage.setItem('hotel', localStorage.getItem('hotelName'));
+        localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
     };
     document.getElementById('return').onclick = function() {
         localStorage.setItem('link', 'details.html');
-        localStorage.setItem('airline', localStorage.getItem('returnAirline'));
+        localStorage.setItem('chosenReturn', localStorage.getItem('return'));
     };
 }
 
 function setupDepartures() {
-    var current = localStorage.getItem('departureAirline');
-    if (current == 'Ryanair') {
-        document.getElementById('alternative1').innerHTML = 'American Airlines';
-        document.getElementById('alternative2').innerHTML = 'Air France';
-        document.getElementById('alternative1btn').onclick = function() {
-            localStorage.setItem('departureAirline', 'American Airlines');
-        };
-        document.getElementById('alternative2btn').onclick = function() {
-            localStorage.setItem('departureAirline', 'Air France');
-        };
+    var current = localStorage.getItem('departure');
 
-        document.getElementById('alternative1view').onclick = function() {
-            localStorage.setItem('airline', 'American Airlines');
-            localStorage.setItem('link', 'departureflights.html');
-        }
-        document.getElementById('alternative2view').onclick = function() {
-            localStorage.setItem('airline', 'Air France');
-            localStorage.setItem('link', 'departureflights.html');
-        }
-    }
+    var parentDiv = $('#currentCard');
+    var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
+    var html = template(departures[parseInt(current)]);
+    parentDiv.append(html);
 
-    else if (current == 'American Airlines') {
-        document.getElementById('alternative1').innerHTML = 'Ryanair';
-        document.getElementById('alternative2').innerHTML = 'Air France';
-        document.getElementById('alternative1btn').onclick = function() {
-            localStorage.setItem('departureAirline', 'Ryanair');
-        };
-        document.getElementById('alternative2btn').onclick = function() {
-            localStorage.setItem('departureAirline', 'Air France');
-        };
-
-        document.getElementById('alternative1view').onclick = function() {
-            localStorage.setItem('airline', 'Ryanair');
-            localStorage.setItem('link', 'departureflights.html');
-        }
-        document.getElementById('alternative2view').onclick = function() {
-            localStorage.setItem('airline', 'Air France');
-            localStorage.setItem('link', 'departureflights.html');
-        }
-    }
-
-    else if (current == 'Air France') {
-        document.getElementById('alternative1').innerHTML = 'Ryanair';
-        document.getElementById('alternative2').innerHTML = 'American Airlines';
-        document.getElementById('alternative1btn').onclick = function() {
-            localStorage.setItem('departureAirline', 'Ryanair');
-        };
-        document.getElementById('alternative2btn').onclick = function() {
-            localStorage.setItem('departureAirline', 'American Airlines');
-        };
-
-        document.getElementById('alternative1view').onclick = function() {
-            localStorage.setItem('airline', 'Ryanair');
-            localStorage.setItem('link', 'departureflights.html');
-        }
-        document.getElementById('alternative2view').onclick = function() {
-            localStorage.setItem('airline', 'American Airlines');
-            localStorage.setItem('link', 'departureflights.html');
-        }
-    }
-
-    document.getElementById('current').innerHTML = current;
-    document.getElementById('currentview').onclick = function() {
-        localStorage.setItem('airline', current);
+    document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'departureflights.html');
+        localStorage.setItem('chosenDeparture', current);
+    };
+
+    if (current == '0') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(departures[1]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(departures[2]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('departure', '1');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('departure', '2');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'departureflights.html');
+            localStorage.setItem('chosenDeparture', '1');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'departureflights.html');
+            localStorage.setItem('chosenDeparture', '2');
+        };
+    }
+
+    else if (current == '1') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(departures[0]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(departures[2]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('departure', '0');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('departure', '2');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'departureflights.html');
+            localStorage.setItem('chosenDeparture', '0');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'departureflights.html');
+            localStorage.setItem('chosenDeparture', '2');
+        };
+    }
+
+    else if (current == '0') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(departures[0]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(departures[1]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('departure', '0');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('departure', '1');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'departureflights.html');
+            localStorage.setItem('chosenDeparture', '0');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'departureflights.html');
+            localStorage.setItem('chosenDeparture', '1');
+        };
     }
 }
 
 function setupReturns() {
-    var current = localStorage.getItem('returnAirline');
-    if (current == 'Ryanair') {
-        document.getElementById('alternative1').innerHTML = 'American Airlines';
-        document.getElementById('alternative2').innerHTML = 'Air France';
-        document.getElementById('alternative1btn').onclick = function() {
-            localStorage.setItem('returnAirline', 'American Airlines');
-        };
-        document.getElementById('alternative2btn').onclick = function() {
-            localStorage.setItem('returnAirline', 'Air France');
-        };
+    var current = localStorage.getItem('return');
 
-        document.getElementById('alternative1view').onclick = function() {
-            localStorage.setItem('airline', 'American Airlines');
-            localStorage.setItem('link', 'returnflights.html');
-        }
-        document.getElementById('alternative2view').onclick = function() {
-            localStorage.setItem('airline', 'Air France');
-            localStorage.setItem('link', 'returnflights.html');
-        }
-    }
+    var parentDiv = $('#currentCard');
+    var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
+    var html = template(returns[parseInt(current)]);
+    parentDiv.append(html);
 
-    else if (current == 'American Airlines') {
-        document.getElementById('alternative1').innerHTML = 'Ryanair';
-        document.getElementById('alternative2').innerHTML = 'Air France';
-        document.getElementById('alternative1btn').onclick = function() {
-            localStorage.setItem('returnAirline', 'Ryanair');
-        };
-        document.getElementById('alternative2btn').onclick = function() {
-            localStorage.setItem('returnAirline', 'Air France');
-        };
-
-        document.getElementById('alternative1view').onclick = function() {
-            localStorage.setItem('airline', 'Ryanair');
-            localStorage.setItem('link', 'returnflights.html');
-        }
-        document.getElementById('alternative2view').onclick = function() {
-            localStorage.setItem('airline', 'Air France');
-            localStorage.setItem('link', 'returnflights.html');
-        }
-    }
-
-    else if (current == 'Air France') {
-        document.getElementById('alternative1').innerHTML = 'Ryanair';
-        document.getElementById('alternative2').innerHTML = 'American Airlines';
-        document.getElementById('alternative1btn').onclick = function() {
-            localStorage.setItem('returnAirline', 'Ryanair');
-        };
-        document.getElementById('alternative2btn').onclick = function() {
-            localStorage.setItem('returnAirline', 'American Airlines');
-        };
-
-        document.getElementById('alternative1view').onclick = function() {
-            localStorage.setItem('airline', 'Ryanair');
-            localStorage.setItem('link', 'returnflights.html');
-        }
-        document.getElementById('alternative2view').onclick = function() {
-            localStorage.setItem('airline', 'American Airlines');
-            localStorage.setItem('link', 'returnflights.html');
-        }
-    }
-
-    document.getElementById('current').innerHTML = current;
-    document.getElementById('currentview').onclick = function() {
-        localStorage.setItem('airline', current);
+    document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'returnflights.html');
+        localStorage.setItem('chosenReturn', current);
+    };
+
+    if (current == '0') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(returns[1]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(returns[2]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('return', '1');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('return', '2');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'returnflights.html');
+            localStorage.setItem('chosenReturn', '1');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'returnflights.html');
+            localStorage.setItem('chosenReturn', '2');
+        };
+    }
+
+    else if (current == '1') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(returns[0]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(returns[2]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('return', '0');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('return', '2');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'returnflights.html');
+            localStorage.setItem('chosenReturn', '0');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'returnflights.html');
+            localStorage.setItem('chosenReturn', '2');
+        };
+    }
+
+    else if (current == '2') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(returns[0]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(returns[1]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('return', '0');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('return', '1');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'returnflights.html');
+            localStorage.setItem('chosenReturn', '0');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'returnflights.html');
+            localStorage.setItem('chosenReturn', '1');
+        };
     }
 }
 
 function setupHotels() {
-    var current = localStorage.getItem('hotelName');
-    if (current == 'Le Motel') {
-        document.getElementById('alt1Name').innerHTML = 'Le Hotel';
-        document.getElementById('alt1Stars').innerHTML = '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>';
-        document.getElementById('alt1Rating').innerHTML = '87% Recommended on TripAdvisor';
+    var current = localStorage.getItem('hotel');
 
-        document.getElementById('alt2Name').innerHTML = 'Le Beau Hotel';
-        document.getElementById('alt2Stars').innerHTML = '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>';
-        document.getElementById('alt2Rating').innerHTML = '95% Recommended on TripAdvisor';
-        document.getElementById('alt1Btn').onclick = function() {
-            localStorage.setItem('hotelName', 'Le Hotel');
-            localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
-            localStorage.setItem('hotelRating', '87% Recommended on TripAdvisor');
-        };
-        document.getElementById('alt2Btn').onclick = function() {
-            localStorage.setItem('hotelName', 'Le Beau Hotel');
-            localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
-            localStorage.setItem('hotelRating', '95% Recommended on TripAdvisor');
-        };
-
-        document.getElementById('alt1View').onclick = function() {
-            localStorage.setItem('hotel', 'Le Hotel');
-            localStorage.setItem('link', 'hotels.html');
-        };
-        document.getElementById('alt2View').onclick = function() {
-            localStorage.setItem('hotel', 'Le Beau Hotel');
-            localStorage.setItem('link', 'hotels.html');
-        };
-    }
-
-    else if (current == 'Le Hotel') {
-        document.getElementById('alt1Name').innerHTML = 'Le Motel';
-        document.getElementById('alt1Stars').innerHTML = '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>';
-        document.getElementById('alt1Rating').innerHTML = '78% Recommended on TripAdvisor';
-
-        document.getElementById('alt2Name').innerHTML = 'Le Beau Hotel';
-        document.getElementById('alt2Stars').innerHTML = '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>';
-        document.getElementById('alt2Rating').innerHTML = '95% Recommended on TripAdvisor';
-        document.getElementById('alt1Btn').onclick = function() {
-            localStorage.setItem('hotelName', 'Le Motel');
-            localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
-            localStorage.setItem('hotelRating', '78% Recommended on TripAdvisor');
-        };
-        document.getElementById('alt2Btn').onclick = function() {
-            localStorage.setItem('hotelName', 'Le Beau Hotel');
-            localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
-            localStorage.setItem('hotelRating', '95% Recommended on TripAdvisor');
-        };
-
-        document.getElementById('alt1View').onclick = function() {
-            localStorage.setItem('hotel', 'Le Motel');
-            localStorage.setItem('link', 'hotels.html');
-        };
-        document.getElementById('alt2View').onclick = function() {
-            localStorage.setItem('hotel', 'Le Beau Hotel');
-            localStorage.setItem('link', 'hotels.html');
-        };
-    }
-
-    else if (current == 'Le Beau Hotel') {
-        document.getElementById('alt1Name').innerHTML = 'Le Motel';
-        document.getElementById('alt1Stars').innerHTML = '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>';
-        document.getElementById('alt1Rating').innerHTML = '78% Recommended on TripAdvisor';
-
-        document.getElementById('alt2Name').innerHTML = 'Le Hotel';
-        document.getElementById('alt2Stars').innerHTML = '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>';
-        document.getElementById('alt2Rating').innerHTML = '87% Recommended on TripAdvisor';
-        document.getElementById('alt1Btn').onclick = function() {
-            localStorage.setItem('hotelName', 'Le Motel');
-            localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
-            localStorage.setItem('hotelRating', '78% Recommended on TripAdvisor');
-        };
-        document.getElementById('alt2Btn').onclick = function() {
-            localStorage.setItem('hotelName', 'Le Hotel');
-            localStorage.setItem('hotelStars', '<i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i><i class="fa fa-star fa-2x" aria-hidden="true"></i>');
-            localStorage.setItem('hotelRating', '87% Recommended on TripAdvisor');
-        };
-
-        document.getElementById('alt1View').onclick = function() {
-            localStorage.setItem('hotel', 'Le Motel');
-            localStorage.setItem('link', 'hotels.html');
-        };
-        document.getElementById('alt2View').onclick = function() {
-            localStorage.setItem('hotel', 'Le Hotel');
-            localStorage.setItem('link', 'hotels.html');
-        };
-    }
-
-    document.getElementById('currentName').innerHTML = current;
-    document.getElementById('currentStars').innerHTML = localStorage.getItem('hotelStars');
-    document.getElementById('currentRating').innerHTML = localStorage.getItem('hotelRating');
+    var parentDiv = $('#currentCard');
+    var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
+    var html = template(hotels[parseInt(current)]);
+    parentDiv.append(html);
 
     document.getElementById('currentView').onclick = function() {
-        localStorage.setItem('hotel', current);
         localStorage.setItem('link', 'hotels.html');
+        localStorage.setItem('chosenHotel', current);
     };
+
+    if (current == '0') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(hotels[1]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(hotels[2]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('hotel', '1');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('hotel', '2');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'hotels.html');
+            localStorage.setItem('chosenHotel', '1');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'hotels.html');
+            localStorage.setItem('chosenHotel', '2');
+        };
+    }
+
+    else if (current == '1') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(hotels[0]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(hotels[2]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('hotel', '0');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('hotel', '2');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'hotels.html');
+            localStorage.setItem('chosenHotel', '0');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'hotels.html');
+            localStorage.setItem('chosenHotel', '2');
+        };
+    }
+
+    else if (current == '2') {
+        parentDiv = $('#alternativeCard1');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
+        html = template(hotels[0]);
+        parentDiv.append(html);
+
+        parentDiv = $('#alternativeCard2');
+        template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
+        html = template(hotels[1]);
+        parentDiv.append(html);
+
+        document.getElementById('alternativeBtn1').onclick = function() {
+            localStorage.setItem('hotel', '0');
+        };
+        document.getElementById('alternativeBtn2').onclick = function() {
+            localStorage.setItem('hotel', '1');
+        };
+
+        document.getElementById('alternativeView1').onclick = function() {
+            localStorage.setItem('link', 'hotels.html');
+            localStorage.setItem('chosenHotel', '0');
+        };
+        document.getElementById('alternativeView2').onclick = function() {
+            localStorage.setItem('link', 'hotels.html');
+            localStorage.setItem('chosenHotel', '1');
+        };
+    }
 }
 
 function setupPurchase() {
-    var hotel = localStorage.getItem('hotelName');
-    var depflight = localStorage.getItem('departureAirline');
-    var retflight = localStorage.getItem('returnAirline');
+    var depFlight = localStorage.getItem('departure');
+    var hotel = localStorage.getItem('hotel');
+    var retFlight = localStorage.getItem('return');
     var flighttotal = 0;
 
-    if (hotel == 'Le Motel') {
-        document.getElementById('hotel').innerHTML = 'Hotel: $1,000';
-    }
-
-    else if (hotel == 'Le Hotel') {
-        document.getElementById('hotel').innerHTML = 'Hotel: $1,400';
-    }
-
-    else if (hotel == 'Le Beau Hotel') {
-        document.getElementById('hotel').innerHTML = 'Hotel: $1,800';
-    }
-
-    if (depflight == 'Ryanair') {
-        flighttotal += 500;
-    }
-
-    else if (depflight == 'American Airlines') {
-        flighttotal += 650;
-    }
-
-    else if (depflight == 'Air France') {
-        flighttotal += 700;
-    }
-
-    if (retflight == 'Ryanair') {
-        flighttotal += 500;
-    }
-
-    else if (retflight == 'American Airlines') {
-        flighttotal += 650;
-    }
-
-    else if (retflight == 'Air France') {
-        flighttotal += 700;
-    }
-
-    document.getElementById('flight').innerHTML = 'Flight: $' + numberWithCommas(flighttotal);
+    document.getElementById('hotel').innerHTML = 'Hotel: $' + numberWithCommas(parseInt(hotels[hotel].price));
+    document.getElementById('flight').innerHTML = 'Flight: $' + numberWithCommas(parseInt(departures[depFlight].price) + parseInt(returns[retFlight].price));
     document.getElementById('total').innerHTML = localStorage.getItem('total');
 }
 
-function setupView() {
-    document.getElementById('airline').innerHTML = localStorage.getItem('airline');
+function setupDeparture() {
     document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
+    setupView(0);
+}
+
+function setupReturn() {
+    document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
+    setupView(1);
+}
+
+function setupView(type) {
+    var index = -1;
+    var data = {};
+
+    if (type == 0) {
+        index = localStorage.getItem('chosenDeparture');
+        data = departures[index];
+    }
+
+    else {
+        index = localStorage.getItem('chosenReturn');
+        data = returns[index];
+    }
+
+    var parentDiv = $('#info');
+    var template = Handlebars.compile(document.getElementById('infoTemplate').innerHTML);
+    var html = template(data);
+    parentDiv.append(html);
 }
 
 function setupHotel() {
-    var name = localStorage.getItem('hotel');
+    var index = localStorage.getItem('chosenHotel');
+    var parentDiv = $('#info');
+    var template = Handlebars.compile(document.getElementById('infoTemplate').innerHTML);
+    var html = template(hotels[index]);
+    parentDiv.append(html);
+
     document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
-    document.getElementById('name').innerHTML = name;
+    document.getElementById('name').innerHTML = hotels[index].hotel;
 
-    if (name == 'Le Motel') {
-        document.getElementById('stars').innerHTML = '3 Star Hotel';
-        document.getElementById('rating').innerHTML = '78% Recommended on TripAdvisor';
-        document.getElementById('misc').innerHTML = 'Close to CDG Airport';
-
+    if (index == '0') {
         document.getElementById('img1').setAttribute('src', 'pics/motel1.jpg');
         document.getElementById('img2').setAttribute('src', 'pics/motel2.jpg');
         document.getElementById('img3').setAttribute('src', 'pics/motel3.jpg');
     }
 
-    else if (name == 'Le Hotel') {
-        document.getElementById('stars').innerHTML = '4 Star Hotel';
-        document.getElementById('rating').innerHTML = '87% Recommended on TripAdvisor';
-        document.getElementById('misc').innerHTML = 'Near great authentic French restaurants';
-
+    else if (index == 'Le Hotel') {
         document.getElementById('img1').setAttribute('src', 'pics/hotel1.jpg');
         document.getElementById('img2').setAttribute('src', 'pics/hotel2.jpg');
         document.getElementById('img3').setAttribute('src', 'pics/hotel3.jpg');
     }
 
-    else if (name == 'Le Beau Hotel') {
-        document.getElementById('stars').innerHTML = '5 Star Hotel';
-        document.getElementById('rating').innerHTML = '95% Recommended on TripAdvisor';
-        document.getElementById('misc').innerHTML = 'Views of the Eiffel Tower';
-
+    else if (index == 'Le Beau Hotel') {
         document.getElementById('img1').setAttribute('src', 'pics/bhotel1.jpg');
         document.getElementById('img2').setAttribute('src', 'pics/bhotel2.jpg');
         document.getElementById('img3').setAttribute('src', 'pics/bhotel3.jpg');
@@ -399,46 +456,9 @@ function setupHotel() {
 }
 
 function calcTotal() {
-    var hotel = localStorage.getItem('hotelName');
-    var depflight = localStorage.getItem('departureAirline');
-    var retflight = localStorage.getItem('returnAirline');
-    var total = 0;
+    var depFlight = localStorage.getItem('departure');
+    var hotel = localStorage.getItem('hotel');
+    var retFlight = localStorage.getItem('return');
 
-    if (hotel == 'Le Motel') {
-        total += 1000;
-    }
-
-    else if (hotel == 'Le Hotel') {
-        total += 1400;
-    }
-
-    else if (hotel == 'Le Beau Hotel') {
-        total += 1800;
-    }
-
-    if (depflight == 'Ryanair') {
-        total += 500;
-    }
-
-    else if (depflight == 'American Airlines') {
-        total += 650;
-    }
-
-    else if (depflight == 'Air France') {
-        total += 700;
-    }
-
-    if (retflight == 'Ryanair') {
-        total += 500;
-    }
-
-    else if (retflight == 'American Airlines') {
-        total += 650;
-    }
-
-    else if (retflight == 'Air France') {
-        total += 700;
-    }
-
-    return total;
+    return parseInt(departures[depFlight].price) + parseInt(hotels[hotel].price) + parseInt(returns[retFlight].price);
 }

@@ -15,6 +15,9 @@
     <script src="https://use.fontawesome.com/4560984a5d.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Import Handlebars -->
+    <script src="js/handlebars-v4.0.11.js"></script>
+
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
 
@@ -24,81 +27,80 @@
     <nav class="navbar navbar-light bg-faded fixed-top" style="background-color: #d3f3fe;">
         <a class="btn fa fa-arrow-left fa-2x" href="party.html"></a>
     </nav>
-    <div class="container-fluid">
-        <h1 class="text-center">Congratulations! Here is what you've booked:</h1>
+    <div class="container-fluid text-center">
+        <h1>Your Package</h1>
         <h2>Departure Flight</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row">
-                    <div class="col-sm-6 align-self-center">
-                        <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm-6 align-self-center">
-                        <div class="row">
-                            <h3>11:10 A.M. - 7:45 A.M.</h3>
+        <div id="departureCard">
+            <script id="departureTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
                         </div>
-                        <div class="row">
-                            <h3>12h 35m SAN-CDG</h3>
+                        <div class="row justify-content-center">
+                            <h3>{{time}}</h3>
                         </div>
-                        <div class="row">
-                            <h3 id="departureAirline">Air France</h3>
+                        <div class="row justify-content-center">
+                            <h3>{{duration}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{airline}}</h3>
                         </div>
                     </div>
                 </div>
-            </div>
+            </script>
         </div>
         <br>
         <h2>Hotel</h2>
-        <div class="card text-center">
-            <div class="card text-center">
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-sm-6 align-self-center">
-                            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-sm-6 align-self-center">
-                            <div class="row">
-                                <h3 id="hotelName">Le Beau Hotel</h3>
+        <div id="hotelCard">
+            <script id="hotelTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <div class="row justify-content-center">
+                                <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
                             </div>
-                            <div id="hotelStars" class="row">
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                            <div class="row justify-content-center">
+                                <h3>{{hotel}}</h3>
                             </div>
-                            <div class="row">
-                                <h3 id="hotelRating">95% Recommended on TripAdvisor</h3>
+                            <div class="row justify-content-center">
+                                {{{stars}}}
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{rating}}</h3>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </script>
         </div>
         <br>
         <h2>Return Flight</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row">
-                    <div class="col-sm-6 align-self-center">
-                        <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm-6 align-self-center">
-                        <div class="row">
-                            <h3>10:40 A.M. - 5:46 A.M.</h3>
+        <div id="returnCard">
+            <script id="returnTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
                         </div>
-                        <div class="row">
-                            <h3>15h 6m CDG-SAN</h3>
+                        <div class="row justify-content-center">
+                            <h3>{{time}}</h3>
                         </div>
-                        <div class="row">
-                            <h3 id="returnAirline">Air France</h3>
+                        <div class="row justify-content-center">
+                            <h3>{{duration}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{airline}}</h3>
                         </div>
                     </div>
                 </div>
-            </div>
+            </script>
         </div>
         <br>
         <h2 id="total" class="text-center">Total: $3,200</h2>
+        <br>
         <div class="text-center">
-            <a role="button" class="btn btn-primary" href="index.html">Book Another Package</a>
+            <a role="button" class="fa-2x btn btn-primary" href="index.html">Book Another Package</a>
         </div>
         <br>
     </div>

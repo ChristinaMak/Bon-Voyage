@@ -15,6 +15,9 @@
     <script src="https://use.fontawesome.com/4560984a5d.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Import Handlebars -->
+    <script src="js/handlebars-v4.0.11.js"></script>
+
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
 
@@ -27,67 +30,77 @@
     <div class="container-fluid text-center">
         <h1>Your Package</h1>
         <h2>Departure Flight</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row justify-content-center">
-                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        <div id="departureCard">
+            <script id="departureTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{time}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{duration}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{airline}}</h3>
+                        </div>
+                    </div>
+                    <a id="departure" role="button" class="btn btn-success" href="departure.html">View Details</a>
+                    <a role="button" class="btn btn-primary" href="departureflights.html">Edit</a>
                 </div>
-                <div class="row justify-content-center">
-                    <h3>11:10 A.M. - 7:45 A.M.</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3>12h 35m SAN-CDG</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3 id="departureAirline">Air France</h3>
-                </div>
-            </div>
-            <a id="departure" role="button" class="btn btn-success" href="departure.html">View Details</a>
-            <a role="button" class="btn btn-primary" href="departureflights.html">Edit</a>
+            </script>
         </div>
         <br>
         <h2>Hotel</h2>
-        <div class="card text-center">
-            <div class="card text-center">
-                <div class="card-block">
-                    <div class="row justify-content-center">
-                        <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
-                    </div>
-                    <div class="row justify-content-center">
-                        <h3 id="hotelName">Le Beau Hotel</h3>
-                    </div>
-                    <div id="hotelStars" class="row justify-content-center">
-                        <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                        <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                        <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="row justify-content-center">
-                        <h3 id="hotelRating">95% Recommended on TripAdvisor</h3>
+        <div id="hotelCard">
+            <script id="hotelTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <div class="row justify-content-center">
+                                <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{hotel}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                {{{stars}}}
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{rating}}</h3>
+                            </div>
+                        </div>
+                        <a id="hotel" role="button" class="btn btn-success" href="hotel.html">View Details</a>
+                        <a role="button" class="btn btn-primary" href="hotels.html">Edit</a>
                     </div>
                 </div>
-                <a id="hotel" role="button" class="btn btn-success" href="hotel.html">View Details</a>
-                <a role="button" class="btn btn-primary" href="hotels.html">Edit</a>
-            </div>
+            </script>
         </div>
         <br>
         <h2>Return Flight</h2>
-        <div class="card text-center">
-            <div class="card-block">
-                <div class="row justify-content-center">
-                    <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+        <div id="returnCard">
+            <script id="returnTemplate" type="text/x-handlebars-template">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div class="row justify-content-center">
+                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{time}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{duration}}</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{airline}}</h3>
+                        </div>
+                    </div>
+                    <a id="return" role="button" class="btn btn-success" href="return.html">View Details</a>
+                    <a role="button" class="btn btn-primary" href="returnflights.html">Edit</a>
                 </div>
-                <div class="row justify-content-center">
-                    <h3>10:40 A.M. - 5:46 A.M.</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3>15h 6m CDG-SAN</h3>
-                </div>
-                <div class="row justify-content-center">
-                    <h3 id="returnAirline">Air France</h3>
-                </div>
-            </div>
-            <a id="return" role="button" class="btn btn-success" href="return.html">View Details</a>
-            <a role="button" class="btn btn-primary" href="returnflights.html">Edit</a>
+            </script>
         </div>
         <br>
         <h2 id="total" class="text-center">Total: $3,200</h2>
