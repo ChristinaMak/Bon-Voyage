@@ -2,13 +2,17 @@ var called = false;
 
 function party() {
     localStorage.setItem('party', document.getElementById('party').value);
-    var hasOrigin = localStorage.getItem('origin') != null;
-    var hasDest = localStorage.getItem('destination') != null;
+    var hasOrigin = localStorage.getItem('origin') != null &&
+        localStorage.getItem('origin') != "";
+    var hasDest = localStorage.getItem('destination') != null &&
+        localStorage.getItem('destination') != "";;
     var hasParty = localStorage.getItem('party') != null &&
         !(isNaN(localStorage.getItem('party'))) &&
         localStorage.getItem('party') != "" &&
         localStorage.getItem('party') >= 0;
-    var hasDates = localStorage.getItem('dates') != null;
+    var hasDates = localStorage.getItem('dates') != null &&
+        localStorage.getItem('dates') > 0;
+
     if (!hasOrigin || !hasDest || !hasParty || !hasDates) {
         if (!called) {
             showSnackbar(hasOrigin, hasDest, hasParty, hasDates);

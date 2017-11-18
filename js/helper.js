@@ -37,9 +37,11 @@ function dates() {
     localStorage.setItem('dates', difference);
 }
 
+/*
 function party() {
     localStorage.setItem('party', document.getElementById('party').value);
 }
+*/
 
 function setupPackages() {
     var departures = baseDepartures;
