@@ -4,8 +4,22 @@
   position: relative;
   display: block;
   margin : 0 auto;
-  margin-top: 5px;
+  margin-top: 5em;
   color: white;
+}
+
+.t-continue {
+    text-align: center;
+    position: relative;
+    display: block;
+    margin : 0 auto;
+    margin-top: 8em;
+    color: white;
+}
+
+#findLocation {
+    margin-top: .5em;
+    color: black;
 }
 
 #party {

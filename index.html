@@ -34,40 +34,25 @@
             <li><a href="party.html"># of People</a></li>
         </ul>
 
+        <br>
+
         <h1 class="text-center">Where are you traveling from?</h1>
 
-        <div class="form-group">
-            &nbsp;
-        </div>
+        <br>
 
         <div class="row justify-content-md-center">
-            <div class="col-12 col-md-auto">
-                <form>
-                    <input class="city-text-box" type="text" id="originCity" placeholder="Choose your city">
-                </form>
+            <div class="col-md-12">
+                <input class="city-text-box form-control form-control-lg" type="text" id="originCity" placeholder="Choose your city">
             </div>
         </div>
 
 
         <div class="row justify-content-center">
-            <button type="button" class="btn btn-lg" onclick="findLocation('San Diego')">
-                <img src="https://image.flaticon.com/icons/svg/60/60834.svg" width = "29" height = "29"/>
-                &nbsp;Find your location
-            </button>
+            <button id="findLocation" class="btn btn-secondary btn-lg" onclick="findLocation('San Diego')"><i class="fa fa-map-marker" aria-hidden="true"></i> Find Location</button>
         </div>
 
-        <div class="form-group">
-            &nbsp;
-        </div>
-        <div class="form-group">
-            &nbsp;
-        </div>
-        <div class="form-group">
-            &nbsp;
-        </div>
-
-        <div class="col-12">
-            <a class="btn btn-primary btn-lg" id="continue" href="travelingto.html" role="button" onclick="originCity()">Continue</a>
+        <div class="col-md-12">
+            <a class="btn btn-primary btn-lg t-continue" id="continue" href="travelingto.html" role="button" onclick="originCity()">Continue</a>
         </div>
     </div>
 </body>
