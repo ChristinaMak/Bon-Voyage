@@ -33,16 +33,17 @@
             <li class="active"><a href="dates.html">Travel Dates</a></li>
             <li class="active"><a href="party.html"># of People</a></li>
         </ul>
-
+        <br>
         <h1 class="text-center">How many people are in your party?</h1>
+        <br>
         <div class="col-12">
             <form>
-                <input type="number" min="1" step="1" onkeypress="return event.charCode >= 48" class="form-control form-control-lg" id="party" value="2"/>
+                <input type="number" min="1" step="1" onkeypress="return event.charCode >= 48" class="city-text-box form-control form-control-lg" id="party" value="2"/>
             </form>
         </div>
 
-        <div class="col-12">
-            <a class="btn btn-primary btn-lg" id="continue" role="button" onclick="party()">Find Packages</a>
+        <div class="col-md-12">
+            <a class="btn btn-primary btn-lg t-continue" id="findPackages" role="button" onclick="party()">Find Packages</a>
         </div>
 
         <div id="snackbar">One or more fields is incomplete:</br></div>
