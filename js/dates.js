@@ -17,5 +17,14 @@ function init_datepicker() {
 };
 
 $(document).ready(function() {
-  init_datepicker();
+    init_datepicker();
+    console.log(document.getElementById("datespicker"));
+    console.log(localStorage.getItem('datesValues'));
+    console.log(localStorage.getItem('dates'));
+    console.log(localStorage.getItem('datesStart'));
+    console.log(localStorage.getItem('datesEnd'));
+    if (document.getElementById("datespicker") != null &&
+        localStorage.getItem('datesValues') != null) {
+        document.getElementById("datespicker").value = localStorage.getItem('datesValues');
+    }
 });

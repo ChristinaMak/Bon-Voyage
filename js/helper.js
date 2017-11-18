@@ -34,7 +34,11 @@ function dates() {
     var start = $('#datespicker').data('daterangepicker').startDate;
     var end = $('#datespicker').data('daterangepicker').endDate;
     var difference = end.diff(start, 'days');
+    console.log(difference);
     localStorage.setItem('dates', difference);
+    localStorage.setItem('datesValues', document.getElementById("datespicker").value);
+    localStorage.setItem('datesStart', document.getElementById("datespicker").data('daterangepicker').startDate);
+    localStorage.setItem('datesEnd', document.getElementById("datespicker").data('daterangepicker').endDate);
 }
 
 /*
@@ -42,6 +46,10 @@ function party() {
     localStorage.setItem('party', document.getElementById('party').value);
 }
 */
+
+function confirmation() {
+    localStorage.clear();
+}
 
 function setupPackages() {
     var departures = baseDepartures;

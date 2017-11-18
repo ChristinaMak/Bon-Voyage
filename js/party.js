@@ -12,7 +12,7 @@ function party() {
         localStorage.getItem('party') >= 0;
     var hasDates = localStorage.getItem('dates') != null &&
         localStorage.getItem('dates') > 0;
-
+    console.log(localStorage.getItem('dates'));
     if (!hasOrigin || !hasDest || !hasParty || !hasDates) {
         if (!called) {
             showSnackbar(hasOrigin, hasDest, hasParty, hasDates);
@@ -52,3 +52,8 @@ function showSnackbar(hasOrigin, hasDest, hasParty, hasDates) {
     // Add the "show" class to DIV
     x.className = "show";
 }
+
+$(document).ready(function() {
+    console.log(localStorage.getItem('dates'));
+    console.log(localStorage.getItem('datesValues'));
+});
