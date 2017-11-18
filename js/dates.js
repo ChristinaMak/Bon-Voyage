@@ -16,8 +16,6 @@ function init_datepicker() {
 
 };
 
-
-
 $(document).ready(function() {
   init_datepicker();
 });

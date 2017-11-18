@@ -17,6 +17,7 @@
 
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
+    <script src="js/party.js"></script>
 
     <title>How many people are in your party?</title>
 </head>
@@ -36,13 +37,15 @@
         <h1 class="text-center">How many people are in your party?</h1>
         <div class="col-12">
             <form>
-                <input type="number" min="1" class="form-control form-control-lg" id="party" placeholder="2"/>
+                <input type="number" min="1" step="1" onkeypress="return event.charCode >= 48" class="form-control form-control-lg" id="party" value="2"/>
             </form>
         </div>
 
         <div class="col-12">
-            <a class="btn btn-primary btn-lg" id="continue" href="packages.html" role="button" onclick="party()">Continue</a>
+            <a class="btn btn-primary btn-lg" id="continue" role="button" onclick="party()">Find Packages</a>
         </div>
+
+        <div id="snackbar">One or more fields is incomplete:</br></div>
     </div>
 </body>
 </html>
