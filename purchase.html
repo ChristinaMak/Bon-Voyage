@@ -29,73 +29,66 @@
     </nav>
     <div class="container-fluid">
         <h1 class="text-center">Summary</h1>
-        <h2 id="hotel">Hotel: $1,800</h2>
-        <h2 id="flight">Flight: $1,400</h2>
-        <h2 id="total">Total: $3,200</h2>
+        <h2 id="hotel"></h2>
+        <h2 id="flight"></h2>
+        <h2 id="total"></h2>
         <hr>
+        <h1 class="text-center">Confirm Purchase</h1>
         <div class="row">
-            <div class="col-sm-6">
-                <h2>Billing Information</h2>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>Name</h3>
-                        <input type="text"/>
-                    </div>
-                    <div class="col-sm-6">
-                        <h3>Card Number</h3>
-                        <input type="text"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>CVV</h3>
-                        <input type="text"/>
-                    </div>
-                    <div class="col-sm-6">
-                        <h3>Expiration Date</h3>
-                        <input type="text"/>
-                    </div>
-                </div>
+            <div class="col-md-3">
             </div>
-            <div class="col-sm-6">
-                <h2>Billing Address</h2>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>Address 1</h3>
-                        <input type="text"/>
-                    </div>
-                    <div class="col-sm-6">
-                        <h3>Address 2</h3>
-                        <input type="text"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>Billing Country</h3>
-                        <input type="text"/>
-                    </div>
-                    <div class="col-sm-6">
-                        <h3>Billing State</h3>
-                        <input type="text"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>Billing City</h3>
-                        <input type="text"/>
-                    </div>
-                    <div class="col-sm-6">
-                        <h3>Billing Zip Code</h3>
-                        <input type="text"/>
-                    </div>
+            <div class="creditCardForm text-center justify-content-center">
+                <!-- Template taken from https://tutorialzine.com/2016/11/simple-credit-card-validation-form -->
+                <div class="payment">
+                    <form action="confirmation.html">
+                        <div class="form-group owner">
+                            <label for="owner">Owner</label>
+                            <input type="text" class="form-control" id="owner">
+                        </div>
+                        <div class="form-group CVV">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" id="cvv">
+                        </div>
+                        <div class="form-group" id="card-number-field">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" class="form-control" id="cardNumber">
+                        </div>
+                        <div class="form-group" id="expiration-date">
+                            <label>Expiration Date</label>
+                            <select>
+                                <option value="01">January</option>
+                                <option value="02">February </option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                            <select>
+                                <option value="17"> 2017</option>
+                                <option value="18"> 2018</option>
+                                <option value="19"> 2019</option>
+                                <option value="20"> 2020</option>
+                                <option value="21"> 2021</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="credit_cards">
+                            <img src="pics/visa.jpg" id="visa">
+                            <img src="pics/mastercard.jpg" id="mastercard">
+                            <img src="pics/amex.jpg" id="amex">
+                        </div>
+                        <div class="form-group" id="pay-now">
+                            <button type="submit" class="btn btn-primary" id="confirm-purchase">Confirm</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <br>
-        <div class="text-center">
-            <a role="button" class="btn btn-primary" href="confirmation.html">Complete Purchase</a>
-        </div>
-        <br>
     </div>
 </body>
 </html>
