@@ -1,11 +1,16 @@
 #location,
 #continue {
-  text-align: center;
-  position: relative;
-  display: block;
-  margin : 0 auto;
-  margin-top: 5em;
-  color: white;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin : 0 auto;
+    margin-top: 5em;
+    color: white;
+}
+
+.no-link {
+    text-decoration: none!important;
+    color: black!important;
 }
 
 .t-continue {
@@ -27,30 +32,30 @@
 }
 
 #party {
-  text-align: center;
-  display: block;
+    text-align: center;
+    display: block;
 }
 
 #datespicker {
-  position: relative;
-  display: block;
-  min-height: 100px;
-  width: 100%;
-  text-align: center;
-  font-size: 24px;
+    position: relative;
+    display: block;
+    min-height: 100px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
 }
 
 .city-text-box {
-  position: relative;
-  display: block;
-  min-height: 100px;
-  width: 100%;
-  text-align: center;
-  font-size: 24px;
+    position: relative;
+    display: block;
+    min-height: 100px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
 }
 
 .form-control {
-  height: 100px;
+    height: 100px;
 }
 
 /* progress bar adapted from https://codepen.io/atakan/pen/gqbIz */
@@ -58,60 +63,60 @@
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 0;
-	overflow: hidden;
-	/*CSS counters to number the steps*/
-	counter-reset: step;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
 }
 #progressbar li {
-	list-style-type: none;
-	color: black;
-	text-transform: uppercase;
-	font-size: 9px;
-	width: 25%;
-	float: left;
-	position: relative;
+    list-style-type: none;
+    color: black;
+    text-transform: uppercase;
+    font-size: 9px;
+    width: 25%;
+    float: left;
+    position: relative;
     text-align: center;
 }
 #progressbar li:before {
-	content: counter(step);
-	counter-increment: step;
-	width: 20px;
-	line-height: 20px;
-	display: block;
-	font-size: 10px;
-	color: #333;
-	background: white;
-	border-radius: 3px;
-	margin: 0 auto 5px auto;
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    line-height: 20px;
+    display: block;
+    font-size: 10px;
+    color: #333;
+    background: white;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
 }
 /*progressbar connectors*/
 #progressbar li:after {
-	content: '';
-	width: 100%;
-	height: 2px;
-	background: white;
-	position: absolute;
-	left: -50%;
-	top: 9px;
-	z-index: -1; /*put it behind the numbers*/
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1; /*put it behind the numbers*/
 }
 #progressbar li:first-child:after {
-	/*connector not needed before the first step*/
-	content: none;
+    /*connector not needed before the first step*/
+    content: none;
 }
 #progressbar li.done {
-  content: counter(step);
+    content: counter(step);
 
-	width: 20px;
-	line-height: 20px;
-	border-radius: 3px;
-	margin: 0 auto 5px auto;
+    width: 20px;
+    line-height: 20px;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
 }
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before,  #progressbar li.active:after{
-	background: #27AE60;
-	color: white;
+    background: #27AE60;
+    color: white;
 }
 
 body {
@@ -139,8 +144,8 @@ body {
 #snackbar.show {
     visibility: visible; /* Show the snackbar */
 
-/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-However, delay the fade out process for 2.5 seconds */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
