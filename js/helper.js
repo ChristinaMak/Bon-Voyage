@@ -184,6 +184,39 @@ function setupDetails() {
     };
 }
 
+function setupRedesign() {
+    var parentDiv = $('#departureCard');
+    var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
+    var html = template(baseDepartures[0]);
+    parentDiv.append(html);
+
+    parentDiv = $('#hotelCard');
+    template = Handlebars.compile(document.getElementById('hotelTemplate').innerHTML);
+    html = template(baseHotels[0]);
+    parentDiv.append(html);
+
+    parentDiv = $('#returnCard');
+    template = Handlebars.compile(document.getElementById('returnTemplate').innerHTML);
+    html = template(baseReturns[0]);
+    parentDiv.append(html);
+
+    document.getElementById('total').innerHTML = 'Total: $2,000';
+
+    document.getElementById('departure').onclick = function() {
+        localStorage.setItem('link', 'newDetails.html');
+        localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
+    };
+    document.getElementById('hotel').onclick = function() {
+        localStorage.setItem('link', 'newDetails.html');
+        localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
+        localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
+    };
+    document.getElementById('return').onclick = function() {
+        localStorage.setItem('link', 'newDetails.html');
+        localStorage.setItem('chosenReturn', localStorage.getItem('return'));
+    };
+}
+
 function setupDepartures() {
     var current = JSON.parse(localStorage.getItem('departure'));
     var current_num = localStorage.getItem('depNum');
