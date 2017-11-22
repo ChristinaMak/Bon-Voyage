@@ -11,6 +11,11 @@
 .no-link {
     text-decoration: none!important;
     color: black!important;
+    background-color: #D3D3D3;
+}
+
+.edit {
+    padding: 20px;
 }
 
 .t-continue {
