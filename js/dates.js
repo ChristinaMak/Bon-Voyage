@@ -25,6 +25,8 @@ $(document).ready(function() {
     console.log(localStorage.getItem('datesEnd'));
     if (document.getElementById("datespicker") != null &&
         localStorage.getItem('datesValues') != null) {
+        //$('#datespicker').data('daterangepicker').startDate = localStorage.getItem('datesStart');// = localStorage.getItem('datesValues');
+        //$('#datespicker').data('daterangepicker').endDate = localStorage.getItem('datesEnd');
         document.getElementById("datespicker").value = localStorage.getItem('datesValues');
     }
 });

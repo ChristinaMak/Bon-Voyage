@@ -4,4 +4,6 @@ $(document).ready(function() {
         localStorage.getItem('origin') != null) {
         document.getElementById("originCity").value = localStorage.getItem('origin');
     }
+
+    enterSubmit("originCity");
 });

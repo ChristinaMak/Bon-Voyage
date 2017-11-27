@@ -56,4 +56,6 @@ function showSnackbar(hasOrigin, hasDest, hasParty, hasDates) {
 $(document).ready(function() {
     console.log(localStorage.getItem('dates'));
     console.log(localStorage.getItem('datesValues'));
+
+    enterSubmit("party");
 });

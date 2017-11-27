@@ -4,4 +4,6 @@ $(document).ready(function() {
         localStorage.getItem('destination') != null) {
         document.getElementById("destinationCity").value = localStorage.getItem('destination');
     }
+
+    enterSubmit("destinationCity");
 });

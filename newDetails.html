@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Import Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!-- Import Font Awesome -->
+    <script src="https://use.fontawesome.com/4560984a5d.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Import Handlebars -->
+    <script src="js/handlebars-v4.0.11.js"></script>
+
+    <!-- Import helper functions -->
+    <script src="js/helper.js"></script>
+
+    <title>Package Details</title>
+</head>
+<body onload="setupRedesign()">
+    <nav class="navbar navbar-light bg-faded fixed-top" style="background-color: #d3f3fe;">
+        <a class="btn fa fa-arrow-left fa-2x" href="packages.html"></a>
+    </nav>
+    <div class="container-fluid text-center">
+        <h1>Your Package</h1>
+        <h2>Departure Flight</h2>
+        <div id="departureCard">
+            <script id="departureTemplate" type="text/x-handlebars-template">
+                <a class="no-link" href="departure.html">
+                    <div id="departure" class="card text-center">
+                        <div class="card-block">
+                            <div class="row justify-content-center">
+                                <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{time}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{duration}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{airline}}</h3>
+                            </div>
+                        </div>
+                        <!--<a id="departure" role="button" class="btn btn-success" href="departure.html">View Details</a>-->
+                        <a role="button" class="btn btn-success edit" href="departureflights.html">Edit</a>
+                    </div>
+                </a>
+            </script>
+        </div>
+        <br>
+        <h2>Hotel</h2>
+        <div id="hotelCard">
+            <script id="hotelTemplate" type="text/x-handlebars-template">
+                <a class="no-link" href="hotel.html">
+                    <div id="hotel" class="card text-center">
+                            <div class="card-block">
+                                <div class="row justify-content-center">
+                                    <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h3>{{hotel}}</h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    {{{stars}}}
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h3>{{rating}}</h3>
+                                </div>
+                            </div>
+                            <a role="button" class="btn btn-success edit" href="hotels.html">Edit</a>
+                    </div>
+                </a>
+            </script>
+        </div>
+        <br>
+        <h2>Return Flight</h2>
+        <div id="returnCard">
+            <script id="returnTemplate" type="text/x-handlebars-template">
+                <a class="no-link" href="return.html">
+                    <div id="return" class="card text-center">
+                        <div class="card-block">
+                            <div class="row justify-content-center">
+                                <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{time}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{duration}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{airline}}</h3>
+                            </div>
+                        </div>
+                        <a role="button" class="btn btn-success edit" href="returnflights.html">Edit</a>
+                    </div>
+                </a>
+            </script>
+        </div>
+        <br>
+        <h2 id="total" class="text-center">Total: $3,200</h2>
+        <div class="text-center">
+            <a role="button" class="fa-2x btn btn-primary" href="purchase.html">Purchase</a>
+        </div>
+        <br>
+    </div>
+</body>
+</html>
