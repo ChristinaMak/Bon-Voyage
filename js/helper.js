@@ -1,3 +1,4 @@
+// Fake data
 var baseDepartures = [
     {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m', 'airline': 'Ryanair', 'price': '500', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
     {'time': '11:10 A.M. - 7:45 A.M.', 'duration': '12h 35m', 'airline': 'American Airlines', 'price': '650', 'plane': 'Boeing 787', 'misc': 'One free carry-on'},
@@ -34,14 +35,17 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// Store origin city input from user
 function originCity() {
     localStorage.setItem('origin', document.getElementById("originCity").value);
 }
 
+// Store destination city input from user
 function destinationCity() {
     localStorage.setItem('destination', document.getElementById("destinationCity").value);
 }
 
+// Store dates input from user
 function dates() {
     var start = $('#datespicker').data('daterangepicker').startDate;
     var end = $('#datespicker').data('daterangepicker').endDate;
@@ -53,15 +57,18 @@ function dates() {
     localStorage.setItem('datesEnd', end);//document.getElementById("datespicker").data('daterangepicker').endDate);
 }
 
+// Clear localStorage after confirming purchase
 function confirmation() {
     localStorage.clear();
 }
 
+// Set up packages page
 function setupPackages() {
     var departures = baseDepartures;
     var hotels = baseHotels;
     var returns = baseReturns;
 
+    // Add to fake data using user input
     for (i = 0; i < 3; i++) {
         departures[i].duration += ' ' + localStorage.getItem('origin') + ' - ' + localStorage.getItem('destination');
         departures[i].price = parseInt(departures[i].price) * parseInt(localStorage.getItem('party'));
@@ -71,6 +78,7 @@ function setupPackages() {
         hotels[i].price = parseInt(hotels[i].price) * parseInt(localStorage.getItem('party')) * parseInt(localStorage.getItem('dates'));
     }
 
+    // Store new fake data adjusted with user input in localStorage
     localStorage.setItem('basicDep', JSON.stringify(departures[0]));
     localStorage.setItem('premDep', JSON.stringify(departures[1]));
     localStorage.setItem('luxDep', JSON.stringify(departures[2]));
@@ -81,7 +89,7 @@ function setupPackages() {
     localStorage.setItem('premRet', JSON.stringify(returns[1]));
     localStorage.setItem('luxRet', JSON.stringify(returns[2]));
 
-
+    // Populate package card templates with given fake data
     var parentDiv = $('#basicCard');
     var template = Handlebars.compile(document.getElementById('basicTemplate').innerHTML);
     var data = {
@@ -112,6 +120,7 @@ function setupPackages() {
     html = template(data);
     parentDiv.append(html);
 
+    // Onclick functions for choosing a package buttons
     document.getElementById('basic').onclick = function() {
         choosePackage('basic');
     };
@@ -123,11 +132,13 @@ function setupPackages() {
     };
 }
 
+// Populates origin city text box with given location (always called with San Diego)
 function findLocation(location) {
     document.getElementById("originCity").value = location;
     document.getElementById("originCity").focus();
 }
 
+// Sets up localStorage based on package chosen
 function choosePackage(package) {
     if (package == 'basic') {
         localStorage.setItem('departure', localStorage.getItem('basicDep'));
@@ -157,7 +168,9 @@ function choosePackage(package) {
     }
 }
 
+// Set up details page
 function setupDetails() {
+    // Populate package item card templates with fake data
     var parentDiv = $('#departureCard');
     var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
     var html = template(JSON.parse(localStorage.getItem('departure')));
@@ -173,72 +186,103 @@ function setupDetails() {
     html = template(JSON.parse(localStorage.getItem('return')));
     parentDiv.append(html);
 
+    // Calculate and display correct total, store it in localStorage
     document.getElementById('total').innerHTML = 'Total: $' + numberWithCommas(calcTotal());
     localStorage.setItem('total', document.getElementById('total').innerHTML);
 
+    // Onclicks for viewing each package item
     document.getElementById('departure').onclick = function() {
+        // Send click event to Google Analytics
+        tracker = ga.getAll()[0];
+        tracker.send('event', 'view', 'click');
         localStorage.setItem('link', 'details.html');
         localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
     };
     document.getElementById('hotel').onclick = function() {
+        // Send click event to Google Analytics
+        tracker = ga.getAll()[0];
+        tracker.send('event', 'view', 'click');
         localStorage.setItem('link', 'details.html');
         localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
         localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
     };
     document.getElementById('return').onclick = function() {
+        // Send click event to Google Analytics
+        tracker = ga.getAll()[0];
+        tracker.send('event', 'view', 'click');
         localStorage.setItem('link', 'details.html');
         localStorage.setItem('chosenReturn', localStorage.getItem('return'));
     };
 }
 
+// Set up newDetails page
 function setupRedesign() {
+    // Populate package item card templates with fake data
     var parentDiv = $('#departureCard');
     var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
-    var html = template(baseDepartures[0]);
+    var html = template(JSON.parse(localStorage.getItem('departure')));
     parentDiv.append(html);
 
     parentDiv = $('#hotelCard');
     template = Handlebars.compile(document.getElementById('hotelTemplate').innerHTML);
-    html = template(baseHotels[0]);
+    html = template(JSON.parse(localStorage.getItem('hotel')));
     parentDiv.append(html);
 
     parentDiv = $('#returnCard');
     template = Handlebars.compile(document.getElementById('returnTemplate').innerHTML);
-    html = template(baseReturns[0]);
+    html = template(JSON.parse(localStorage.getItem('return')));
     parentDiv.append(html);
 
-    document.getElementById('total').innerHTML = 'Total: $2,000';
+    // Calculate and display correct total, store it in localStorage
+    document.getElementById('total').innerHTML = 'Total: $' + numberWithCommas(calcTotal());
+    localStorage.setItem('total', document.getElementById('total').innerHTML);
 
+    // Onclicks for viewing each package item
     document.getElementById('departure').onclick = function() {
-        localStorage.setItem('link', 'newDetails.html');
+        // Send click event to Google Analytics
+        tracker = ga.getAll()[0];
+        tracker.send('event', 'view', 'click');
+        localStorage.setItem('link', 'details.html');
         localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
     };
     document.getElementById('hotel').onclick = function() {
-        localStorage.setItem('link', 'newDetails.html');
+        // Send click event to Google Analytics
+        tracker = ga.getAll()[0];
+        tracker.send('event', 'view', 'click');
+        localStorage.setItem('link', 'details.html');
         localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
         localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
     };
     document.getElementById('return').onclick = function() {
-        localStorage.setItem('link', 'newDetails.html');
+        // Send click event to Google Analytics
+        tracker = ga.getAll()[0];
+        tracker.send('event', 'view', 'click');
+        localStorage.setItem('link', 'details.html');
         localStorage.setItem('chosenReturn', localStorage.getItem('return'));
     };
 }
 
+// Set up edit departures page
 function setupDepartures() {
+    // Get current departure choice information from localStorage
     var current = JSON.parse(localStorage.getItem('departure'));
     var current_num = localStorage.getItem('depNum');
 
+    // Populate current departure card template
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
     var html = template(current);
     parentDiv.append(html);
 
+    // Onclick to set link and chosen departure to view
     document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'departureflights.html');
         localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
     };
 
+    // Current departure is the basic departure
     if (current_num == '0') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('premDep')));
@@ -249,6 +293,7 @@ function setupDepartures() {
         html = template(JSON.parse(localStorage.getItem('luxDep')));
         parentDiv.append(html);
 
+        // Onclick to change departure when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('departure', localStorage.getItem('premDep'));
             localStorage.setItem('depNum', '1');
@@ -258,6 +303,7 @@ function setupDepartures() {
             localStorage.setItem('depNum', '2');
         };
 
+        // Onclick to set link and chosen departure to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
             localStorage.setItem('chosenDeparture', localStorage.getItem('premDep'));
@@ -268,7 +314,9 @@ function setupDepartures() {
         };
     }
 
+    // Current departure is the premium departure
     else if (current_num == '1') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('basicDep')));
@@ -279,6 +327,7 @@ function setupDepartures() {
         html = template(JSON.parse(localStorage.getItem('luxDep')));
         parentDiv.append(html);
 
+        // Onclick to change departure when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('departure', localStorage.getItem('basicDep'));
             localStorage.setItem('depNum', '0');
@@ -288,6 +337,7 @@ function setupDepartures() {
             localStorage.setItem('depNum', '2');
         };
 
+        // Onclick to set link and chosen departure to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
             localStorage.setItem('chosenDeparture', localStorage.getItem('basicDep'));
@@ -298,7 +348,9 @@ function setupDepartures() {
         };
     }
 
+    // Current departure is the luxury departure
     else if (current_num == '2') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('basicDep')));
@@ -309,6 +361,7 @@ function setupDepartures() {
         html = template(JSON.parse(localStorage.getItem('premDep')));
         parentDiv.append(html);
 
+        // Onclick to change departure when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('departure', localStorage.getItem('basicDep'));
             localStorage.setItem('depNum', '0');
@@ -318,6 +371,7 @@ function setupDepartures() {
             localStorage.setItem('depNum', '1');
         };
 
+        // Onclick to set link and chosen departure to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'departureflights.html');
             localStorage.setItem('chosenDeparture', localStorage.getItem('basicDep'));
@@ -329,21 +383,27 @@ function setupDepartures() {
     }
 }
 
+// Set up edit returns page
 function setupReturns() {
+    // Get current return choice information from localStorage
     var current = JSON.parse(localStorage.getItem('return'));
     var current_num = localStorage.getItem('retNum');
 
+    // Populate current return card template
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
     var html = template(current);
     parentDiv.append(html);
 
+    // Onclick to set link and chosen return to view
     document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'returnflights.html');
         localStorage.setItem('chosenReturn', localStorage.getItem('return'));
     };
 
+    // Current return is the basic return
     if (current_num == '0') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('premRet')));
@@ -354,6 +414,7 @@ function setupReturns() {
         html = template(JSON.parse(localStorage.getItem('luxRet')));
         parentDiv.append(html);
 
+        // Onclick to change return when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('return', localStorage.getItem('premRet'));
             localStorage.setItem('retNum', '1');
@@ -363,6 +424,7 @@ function setupReturns() {
             localStorage.setItem('retNum', '2');
         };
 
+        // Onclick to set link and chosen return to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
             localStorage.setItem('chosenReturn', localStorage.getItem('premRet'));
@@ -373,7 +435,9 @@ function setupReturns() {
         };
     }
 
+    // Current return is the premium return
     else if (current_num == '1') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('basicRet')));
@@ -384,6 +448,7 @@ function setupReturns() {
         html = template(JSON.parse(localStorage.getItem('luxRet')));
         parentDiv.append(html);
 
+        // Onclick to change return when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('return', localStorage.getItem('basicRet'));
             localStorage.setItem('retNum', '0');
@@ -393,6 +458,7 @@ function setupReturns() {
             localStorage.setItem('retNum', '2');
         };
 
+        // Onclick to set link and chosen return to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
             localStorage.setItem('chosenReturn', localStorage.getItem('basicRet'));
@@ -403,7 +469,9 @@ function setupReturns() {
         };
     }
 
+    // Current return is the luxury return
     else if (current_num == '2') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('basicRet')));
@@ -414,6 +482,7 @@ function setupReturns() {
         html = template(JSON.parse(localStorage.getItem('premRet')));
         parentDiv.append(html);
 
+        // Onclick to change return when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('return', localStorage.getItem('basicRet'));
             localStorage.setItem('retNum', '0');
@@ -423,6 +492,7 @@ function setupReturns() {
             localStorage.setItem('retNum', '1');
         };
 
+        // Onclick to set link and chosen return to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'returnflights.html');
             localStorage.setItem('chosenReturn', localStorage.getItem('basicRet'));
@@ -434,22 +504,28 @@ function setupReturns() {
     }
 }
 
+// Set up edit hotels page
 function setupHotels() {
+    // Get current hotel choice information from localStorage
     var current = JSON.parse(localStorage.getItem('hotel'));
     var current_num = localStorage.getItem('hotNum');
 
+    // Populate current hotel card template
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
     var html = template(current);
     parentDiv.append(html);
 
+    // Onclick to set link and chosen hotel to view
     document.getElementById('currentView').onclick = function() {
         localStorage.setItem('link', 'hotels.html');
         localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
         localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
     };
 
+    // Current hotel is the basic hotel
     if (current_num == '0') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('premHot')));
@@ -460,6 +536,7 @@ function setupHotels() {
         html = template(JSON.parse(localStorage.getItem('luxHot')));
         parentDiv.append(html);
 
+        // Onclicks to change hotel when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('hotel', localStorage.getItem('premHot'));
             localStorage.setItem('hotNum', '1');
@@ -469,6 +546,7 @@ function setupHotels() {
             localStorage.setItem('hotNum', '2');
         };
 
+        // Onclicks to set link and chosen hotel to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('premHot'));
@@ -481,7 +559,9 @@ function setupHotels() {
         };
     }
 
+    // Current hotel is the premium hotel
     else if (current_num == '1') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('basicHot')));
@@ -492,6 +572,7 @@ function setupHotels() {
         html = template(JSON.parse(localStorage.getItem('luxHot')));
         parentDiv.append(html);
 
+        // Onclicks to change hotel when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('hotel', localStorage.getItem('basicHot'));
             localStorage.setItem('hotNum', '0');
@@ -501,6 +582,7 @@ function setupHotels() {
             localStorage.setItem('hotNum', '2');
         };
 
+        // Onclicks to set link and chosen hotel to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('basicHot'));
@@ -513,7 +595,9 @@ function setupHotels() {
         };
     }
 
+    // Current hotel is the luxury hotel
     else if (current_num == '2') {
+        // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
         html = template(JSON.parse(localStorage.getItem('basicHot')));
@@ -524,6 +608,7 @@ function setupHotels() {
         html = template(JSON.parse(localStorage.getItem('premHot')));
         parentDiv.append(html);
 
+        // Onclicks to change hotel when choose is clicked
         document.getElementById('alternativeBtn1').onclick = function() {
             localStorage.setItem('hotel', localStorage.getItem('basicHot'));
             localStorage.setItem('hotNum', '0');
@@ -533,6 +618,7 @@ function setupHotels() {
             localStorage.setItem('hotNum', '1');
         };
 
+        // Onclicks to set link and chosen hotel to view
         document.getElementById('alternativeView1').onclick = function() {
             localStorage.setItem('link', 'hotels.html');
             localStorage.setItem('chosenHotel', localStorage.getItem('basicHot'));
@@ -546,19 +632,25 @@ function setupHotels() {
     }
 }
 
+// Set up purchase page
 function setupPurchase() {
+    // Get chosen package information
     var depFlight = JSON.parse(localStorage.getItem('departure'));
     var hotel = JSON.parse(localStorage.getItem('hotel'));
     var retFlight = JSON.parse(localStorage.getItem('return'));
 
+    // Display correct package price numbers
     document.getElementById('hotel').innerHTML = 'Hotel: $' + numberWithCommas(parseInt(hotel.price));
     document.getElementById('flight').innerHTML = 'Flight: $' + numberWithCommas(parseInt(depFlight.price) + parseInt(retFlight.price));
     document.getElementById('total').innerHTML = localStorage.getItem('total');
 }
 
+// Set up view flight page
 function setupView(type) {
+    // Set link to return to when back button is pressed
     document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
 
+    // Get data from localStorage based on type of flight
     var index = -1;
     var data = {};
 
@@ -570,23 +662,30 @@ function setupView(type) {
         data = JSON.parse(localStorage.getItem('chosenReturn'));
     }
 
+    // Populate info template
     var parentDiv = $('#info');
     var template = Handlebars.compile(document.getElementById('infoTemplate').innerHTML);
     var html = template(data);
     parentDiv.append(html);
 }
 
+// Set up view hotel page
 function setupHotel() {
+    // Get hotel info from localStorage
     var data = JSON.parse(localStorage.getItem('chosenHotel'));
     var index = localStorage.getItem('chosenHotNum')
+
+    // Populate info template with chosen data
     var parentDiv = $('#info');
     var template = Handlebars.compile(document.getElementById('infoTemplate').innerHTML);
     var html = template(data);
     parentDiv.append(html);
 
+    // Set up back button link and hotel name
     document.getElementById('link').setAttribute('href', localStorage.getItem('link'));
     document.getElementById('name').innerHTML = data.hotel;
 
+    // Choose correct pictures to display based on hotel choice
     if (index == '0') {
         document.getElementById('img1').setAttribute('src', 'pics/motel1.jpg');
         document.getElementById('img2').setAttribute('src', 'pics/motel2.jpg');
@@ -606,7 +705,9 @@ function setupHotel() {
     }
 }
 
+// Calculate total cost of chosen package items
 function calcTotal() {
+    // Get chosen package items
     var depFlight = JSON.parse(localStorage.getItem('departure'));
     var hotel = JSON.parse(localStorage.getItem('hotel'));
     var retFlight = JSON.parse(localStorage.getItem('return'));
