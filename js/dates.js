@@ -1,3 +1,30 @@
+function formatDate(date) {
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+
+  return month + '/' + day + '/' + year;
+}
+
+/* Datepicker from https://codepen.io/MarkitDigital/pen/mVarxm */
+$(function () {
+  var today = formatDate(new Date());
+  console.log("today");
+  console.log(today);
+  var $pickers = $('.mk-datepicker-trigger');
+      $pickers.mkdatepicker(
+          {
+              inline: true,
+              initial: today,
+              min: today
+          }
+      );
+      $pickers.on('change.mk-datepicker', function(e, date) {
+          console.info('formatted date: ', this.value);
+          console.info('raw date object: ', date);
+      });
+});
+
 function init_datepicker() {
   $('input[name="datefilter"]').daterangepicker({
       autoUpdateInput: false,
@@ -29,4 +56,17 @@ $(document).ready(function() {
         //$('#datespicker').data('daterangepicker').endDate = localStorage.getItem('datesEnd');
         document.getElementById("datespicker").value = localStorage.getItem('datesValues');
     }
+/*
+    var start = $('#datespicker').data('daterangepicker').startDate;
+    var end = $('#datespicker').data('daterangepicker').endDate;
+    console.log("end");
+    console.log(end);
+    var difference = end.diff(start, 'days');
+    console.log("difference");
+    console.log(difference);
+*/
+    start = moment($('#start-date').data('mk-datepicker').date)
+    end = moment($('#end-date').data('mk-datepicker').date)
+    difference = end.diff(start, 'days');
+    console.log(difference);
 });

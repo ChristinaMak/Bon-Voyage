@@ -47,9 +47,13 @@ function destinationCity() {
 
 // Store dates input from user
 function dates() {
-    var start = $('#datespicker').data('daterangepicker').startDate;
-    var end = $('#datespicker').data('daterangepicker').endDate;
+    //var start = $('#datespicker').data('daterangepicker').startDate;
+    //var end = $('#datespicker').data('daterangepicker').endDate;
+    //var difference = end.diff(start, 'days');
+    var start = moment($('#start-date').data('mk-datepicker').date)
+    var end = moment($('#end-date').data('mk-datepicker').date)
     var difference = end.diff(start, 'days');
+    console.log("difference")
     console.log(difference);
     localStorage.setItem('dates', difference);
     localStorage.setItem('datesValues', document.getElementById("datespicker").value);

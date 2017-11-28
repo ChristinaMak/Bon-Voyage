@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
@@ -23,6 +24,13 @@
     <!-- Import Font Awesome -->
     <script src="https://use.fontawesome.com/4560984a5d.js"></script>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Import Mk DatePicker-->
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/176621/mk-ui.css">
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/176621/mk-datepicker.css">
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/176621/mk-component.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/176621/mk-datepicker.js"></script>
+
 
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
@@ -44,9 +52,25 @@
         <br>
         <h1 class="text-center">When are you traveling?</h1>
         <br>
+        <!--
         <div class="col-12">
             <input type="text" id="datespicker" name="datefilter" value="" readonly/>
         </div>
+-->
+        <div class="row">
+                <div class="col-sm-6">
+                    <fieldset class="mk-datepicker-container">
+                      <label for="start-date">Start Date</label>
+                      <input type="text" id="start-date" name="start-date" placeholder="Select Date" class="mk-datepicker-trigger" data-max="#end-date" />
+                    </fieldset>
+                </div>
+                <div class="col-sm-6">
+                    <fieldset class="mk-datepicker-container">
+                      <label for="end-date">End Date</label>
+                      <input type="text" id="end-date" name="end-date" placeholder="Select Date" class="mk-datepicker-trigger" data-min="#start-date" />
+                    </fieldset>
+                </div>
+            </div>
 
         <div class="col-12">
             <a class="btn btn-primary btn-lg t-continue" href="party.html" role="button" onclick="dates()">Continue</a>
