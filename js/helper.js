@@ -177,17 +177,38 @@ function setupDetails() {
     // Populate package item card templates with fake data
     var parentDiv = $('#departureCard');
     var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
-    var html = template(JSON.parse(localStorage.getItem('departure')));
+    allData = JSON.parse(localStorage.getItem('departure'));
+    data = {
+        'time': allData.time,
+        'duration': allData.duration,
+        'airline': allData.airline,
+        'price': numberWithCommas(allData.price)
+    }
+    var html = template(data);
     parentDiv.append(html);
 
     parentDiv = $('#hotelCard');
     template = Handlebars.compile(document.getElementById('hotelTemplate').innerHTML);
-    html = template(JSON.parse(localStorage.getItem('hotel')));
+    allData = JSON.parse(localStorage.getItem('hotel'));
+    data = {
+        'hotel': allData.hotel,
+        'stars': allData.stars,
+        'rating': allData.rating,
+        'price': numberWithCommas(allData.price)
+    }
+    html = template(data);
     parentDiv.append(html);
 
     parentDiv = $('#returnCard');
     template = Handlebars.compile(document.getElementById('returnTemplate').innerHTML);
-    html = template(JSON.parse(localStorage.getItem('return')));
+    allData = JSON.parse(localStorage.getItem('return'));
+    data = {
+        'time': allData.time,
+        'duration': allData.duration,
+        'airline': allData.airline,
+        'price': numberWithCommas(allData.price)
+    }
+    html = template(data);
     parentDiv.append(html);
 
     // Calculate and display correct total, store it in localStorage
