@@ -178,37 +178,19 @@ function setupDetails() {
     var parentDiv = $('#departureCard');
     var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
     allData = JSON.parse(localStorage.getItem('departure'));
-    data = {
-        'time': allData.time,
-        'duration': allData.duration,
-        'airline': allData.airline,
-        'price': numberWithCommas(allData.price)
-    }
-    var html = template(data);
+    var html = template(setFlightData(allData));
     parentDiv.append(html);
 
     parentDiv = $('#hotelCard');
     template = Handlebars.compile(document.getElementById('hotelTemplate').innerHTML);
     allData = JSON.parse(localStorage.getItem('hotel'));
-    data = {
-        'hotel': allData.hotel,
-        'stars': allData.stars,
-        'rating': allData.rating,
-        'price': numberWithCommas(allData.price)
-    }
-    html = template(data);
+    html = template(setHotelData(allData));
     parentDiv.append(html);
 
     parentDiv = $('#returnCard');
     template = Handlebars.compile(document.getElementById('returnTemplate').innerHTML);
     allData = JSON.parse(localStorage.getItem('return'));
-    data = {
-        'time': allData.time,
-        'duration': allData.duration,
-        'airline': allData.airline,
-        'price': numberWithCommas(allData.price)
-    }
-    html = template(data);
+    html = template(setFlightData(allData));
     parentDiv.append(html);
 
     // Calculate and display correct total, store it in localStorage
@@ -245,17 +227,20 @@ function setupRedesign() {
     // Populate package item card templates with fake data
     var parentDiv = $('#departureCard');
     var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
-    var html = template(JSON.parse(localStorage.getItem('departure')));
+    var data = JSON.parse(localStorage.getItem('departure'));
+    var html = template(setFlightData(data));
     parentDiv.append(html);
 
     parentDiv = $('#hotelCard');
     template = Handlebars.compile(document.getElementById('hotelTemplate').innerHTML);
-    html = template(JSON.parse(localStorage.getItem('hotel')));
+    data = JSON.parse(localStorage.getItem('hotel'));
+    html = template(setHotelData(data));
     parentDiv.append(html);
 
     parentDiv = $('#returnCard');
     template = Handlebars.compile(document.getElementById('returnTemplate').innerHTML);
-    html = template(JSON.parse(localStorage.getItem('return')));
+    data = JSON.parse(localStorage.getItem('return'));
+    html = template(setFlightData(data));
     parentDiv.append(html);
 
     // Calculate and display correct total, store it in localStorage
@@ -287,6 +272,27 @@ function setupRedesign() {
     };
 }
 
+// Set up the data of each flight card
+function setFlightData(allData) {
+    var returnData =  {
+        'time': allData.time,
+        'duration': allData.duration,
+        'airline': allData.airline,
+        'price': numberWithCommas(allData.price)
+    };
+    return returnData;
+}
+
+function setHotelData(allData) {
+    returnData = {
+        'hotel': allData.hotel,
+        'stars': allData.stars,
+        'rating': allData.rating,
+        'price': numberWithCommas(allData.price)
+    };
+    return returnData;
+}
+
 // Set up edit departures page
 function setupDepartures() {
     // Get current departure choice information from localStorage
@@ -296,7 +302,7 @@ function setupDepartures() {
     // Populate current departure card template
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
-    var html = template(current);
+    var html = template(setFlightData(current));
     parentDiv.append(html);
 
     // Onclick to set link and chosen departure to view
@@ -310,12 +316,14 @@ function setupDepartures() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('premDep')));
+        allData = JSON.parse(localStorage.getItem('premDep'))
+        html = template(setFlightData(allData));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('luxDep')));
+        allData = JSON.parse(localStorage.getItem('luxDep'));
+        html = template(setFlightData(allData))
         parentDiv.append(html);
 
         // Onclick to change departure when choose is clicked
@@ -417,7 +425,7 @@ function setupReturns() {
     // Populate current return card template
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
-    var html = template(current);
+    var html = template(setFlightData(current));
     parentDiv.append(html);
 
     // Onclick to set link and chosen return to view
@@ -431,12 +439,14 @@ function setupReturns() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('premRet')));
+        allData = JSON.parse(localStorage.getItem('premRet'));
+        html = template(setFlightData(allData));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('luxRet')));
+        allData = JSON.parse(localStorage.getItem('luxRet'));
+        html = template(setFlightData(allData));
         parentDiv.append(html);
 
         // Onclick to change return when choose is clicked
@@ -465,12 +475,14 @@ function setupReturns() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('basicRet')));
+        allData = JSON.parse(localStorage.getItem('basicRet'))
+        html = template(setFlightData(allData));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('luxRet')));
+        allData = JSON.parse(localStorage.getItem('luxRet'));
+        html = template(setFlightData(allData));
         parentDiv.append(html);
 
         // Onclick to change return when choose is clicked
@@ -499,12 +511,14 @@ function setupReturns() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('basicRet')));
+        allData = JSON.parse(localStorage.getItem('basicRet'));
+        html = template(setFlightData(allData));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('premRet')));
+        allData = JSON.parse(localStorage.getItem('premRet'));
+        html = template(setFlightData(allData));
         parentDiv.append(html);
 
         // Onclick to change return when choose is clicked
@@ -538,7 +552,7 @@ function setupHotels() {
     // Populate current hotel card template
     var parentDiv = $('#currentCard');
     var template = Handlebars.compile(document.getElementById('currentTemplate').innerHTML);
-    var html = template(current);
+    var html = template(setHotelData(current));
     parentDiv.append(html);
 
     // Onclick to set link and chosen hotel to view
@@ -553,12 +567,14 @@ function setupHotels() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('premHot')));
+        data = JSON.parse(localStorage.getItem('premHot'));
+        html = template(setHotelData(data));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('luxHot')));
+        data = JSON.parse(localStorage.getItem('luxHot'));
+        html = template(setHotelData(data));
         parentDiv.append(html);
 
         // Onclicks to change hotel when choose is clicked
@@ -589,12 +605,14 @@ function setupHotels() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('basicHot')));
+        data = JSON.parse(localStorage.getItem('basicHot'));
+        html = template(setHotelData(data));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('luxHot')));
+        data = JSON.parse(localStorage.getItem('luxHot'));
+        html = template(setHotelData(data));
         parentDiv.append(html);
 
         // Onclicks to change hotel when choose is clicked
@@ -625,12 +643,14 @@ function setupHotels() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('basicHot')));
+        data = JSON.parse(localStorage.getItem('basicHot'));
+        html = template(setHotelData(data));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('premHot')));
+        data = JSON.parse(localStorage.getItem('premHot'));
+        html = template(setHotelData(data));
         parentDiv.append(html);
 
         // Onclicks to change hotel when choose is clicked
