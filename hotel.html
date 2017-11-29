@@ -18,8 +18,14 @@
     <!-- Import Handlebars -->
     <script src="js/handlebars-v4.0.11.js"></script>
 
+    <!-- Import Slick -->
+    <link rel="stylesheet" type="text/css" href="vendors/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="vendors/slick/slick-theme.css"/>
+    <script type="text/javascript" src="vendors/slick/slick.min.js"></script>
+
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
+    <script src="js/carousel-helper.js"></script>
 
     <title>Hotel Details</title>
 </head>
@@ -31,6 +37,18 @@
         <h1 id="name" class="text-center">Le Beau Hotel</h1>
     </div>
 
+    <div class="single-item">
+        <div class="carousel-item">
+            <img id='img1' class="d-block img-fluid" src="#" alt="First slide">
+        </div>
+        <div class="carousel-item">
+            <img id='img2' class="d-block img-fluid" src="#" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+            <img id='img3' class="d-block img-fluid" src="#" alt="Third slide">
+        </div>
+    </div>
+<!--
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -57,7 +75,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
+-->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <div id="info">
