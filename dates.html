@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110320228-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-110320228-2');
-    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,23 +16,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-    <!-- Import Date Picker Scripts -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-    <script src="js/dates.js"></script>
-
     <!-- Import Font Awesome -->
     <script src="https://use.fontawesome.com/4560984a5d.js"></script>
-    <link rel="stylesheet" href="css/style.css">
 
     <!-- Import Mk DatePicker-->
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/176621/mk-ui.css">
-    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/176621/mk-datepicker.css">
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/176621/mk-component.js"></script>
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/176621/mk-datepicker.js"></script>
+    <!--<link rel="stylesheet" href="vendors/mk-ui-version-1.0/theme/mk-ui.css">-->
+    <link rel="stylesheet" href="vendors/mk-ui-version-1.0/datepicker/mk-datepicker.css">
+    <script src="vendors/mk-ui-version-1.0/component/mk-component.js"></script>
+    <script src="vendors/mk-ui-version-1.0/datepicker/mk-datepicker.js"></script>
 
+    <script src="js/dates.js"></script>
 
     <!-- Import helper functions -->
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/helper.js"></script>
 
     <title>When are you traveling?</title>
@@ -60,11 +48,7 @@
         <br>
         <h1 class="text-center">When are you traveling?</h1>
         <br>
-        <!--
-        <div class="col-12">
-            <input type="text" id="datespicker" name="datefilter" value="" readonly/>
-        </div>
--->
+
         <div class="row">
                 <div class="col-sm-6">
                     <fieldset class="mk-datepicker-container">

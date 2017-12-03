@@ -25,26 +25,7 @@ $(function () {
       });
 });
 
-function init_datepicker() {
-  $('input[name="datefilter"]').daterangepicker({
-      autoUpdateInput: false,
-      locale: {
-          cancelLabel: 'Clear'
-      }
-  });
-
-  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-  });
-
-  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-      $(this).val('');
-  });
-
-};
-
 $(document).ready(function() {
-    init_datepicker();
     console.log(document.getElementById("datespicker"));
     console.log(localStorage.getItem('datesValues'));
     console.log(localStorage.getItem('dates'));
@@ -56,15 +37,7 @@ $(document).ready(function() {
         //$('#datespicker').data('daterangepicker').endDate = localStorage.getItem('datesEnd');
         document.getElementById("datespicker").value = localStorage.getItem('datesValues');
     }
-/*
-    var start = $('#datespicker').data('daterangepicker').startDate;
-    var end = $('#datespicker').data('daterangepicker').endDate;
-    console.log("end");
-    console.log(end);
-    var difference = end.diff(start, 'days');
-    console.log("difference");
-    console.log(difference);
-*/
+
     start = moment($('#start-date').data('mk-datepicker').date)
     end = moment($('#end-date').data('mk-datepicker').date)
     difference = end.diff(start, 'days');

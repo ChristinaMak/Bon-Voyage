@@ -1,0 +1,138 @@
+
+@keyframes mk-autocomplete-statechange {
+	from { width: 0; }
+	to { width: 100%; }
+}
+
+.mk-autocomplete {
+	border: 1px solid #ccc;
+	padding: 10px;
+	position: relative;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+
+.mk-autocomplete.focused {
+	border-color: cadetblue;
+}
+
+.mk-autocomplete.capacity {
+	border-color: crimson;
+}
+
+.mk-autocomplete:before,
+.mk-autocomplete:after {
+	content: "";
+    position: absolute;
+    width: calc(100% + 2px);
+    height: 4px;
+    background: transparent;
+    color: #ffffff;
+    text-align: center;
+    left: -1px;
+    top: 100%;
+    transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+
+.mk-autocomplete.capacity:before {
+	background: crimson;
+}
+
+.mk-autocomplete.capacity:after {
+	background: brown;
+	width: 0;
+	animation-name: mk-autocomplete-statechange;
+	animation-duration: 3s;
+	animation-iteration-count: 1;
+}
+
+.mk-autocomplete.loading:before {
+	background: cadetblue;
+}
+
+.mk-autocomplete.loading:after {
+	background: cornflowerblue;
+	width: 0;
+	animation-name: mk-autocomplete-statechange;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+}
+
+.mk-autocomplete > input {
+	border-width: 0;
+	width: 100%;
+}
+
+.mk-autocomplete > input:focus {
+	outline: none;
+}
+
+.mk-autocomplete-list-container {
+	background: #ffffff;
+	border: 1px solid #ccc;
+	border-width: 0 1px 1px 1px;
+	list-style: none;
+	margin: 1px 0 0 0;
+	padding: 0;
+	position: absolute;
+	top: 100%;
+	left: -1px;
+	right: -1px;
+	z-index: 1;
+}
+
+.mk-autocomplete-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.mk-autocomplete-list-container.aria-hidden {
+	display: none;
+}
+
+.mk-autocomplete-item {
+	color: #ff6c70;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 5px 10px;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+
+.mk-autocomplete-item.active,
+.mk-autocomplete-item:hover {
+	background: #ffc6c8;
+	color: #fff;
+}
+
+.mk-autocomplete-highlight {
+	font-weight: bold;
+	color: #666;
+}
+
+.mk-autocomplete-label {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.mk-autocomplete-label [data-action="remove"] {
+	background: #ffc6c8;
+	border-radius: 80%;
+	cursor: pointer;
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 5px;
+	padding: 10px;
+	position: relative;
+}
+
+.mk-autocomplete-label [data-action="remove"]:after {
+	content: '\2716';
+	color: #666;
+	position: absolute;
+	top: 0;
+    left: 4px;
+}
