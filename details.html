@@ -1,31 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Google Analytics Content Experiment code -->
-    <!--
-    <script>function utmx_section(){}function utmx(){}(function(){var
-    k='165331367-0',d=document,l=d.location,c=d.cookie;
-    if(l.search.indexOf('utm_expid='+k)>0)return;
-    function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-    indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-    length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-    '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-    '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-    '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-    valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-    '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-    </script><script>utmx('url','A/B');</script>-->
-    <!-- End of Google Analytics Content Experiment code -->
-
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110320228-2"></script>
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110320228-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-110320228-2');
-    </script>
+    </script>-->
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,10 +29,13 @@
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+
     <title>Package Details</title>
 </head>
-<body onload="setupDetails()">
-    <nav class="navbar navbar-light bg-faded fixed-top" style="background-color: #d3f3fe;">
+<body onload="setupRedesign()">
+    <nav class="navbar navbar-light bg-faded fixed-top">
         <a class="btn fa fa-arrow-left fa-2x" href="packages.html"></a>
     </nav>
     <div class="container-fluid text-center">
@@ -57,83 +43,85 @@
         <h2>Departure Flight</h2>
         <div id="departureCard">
             <script id="departureTemplate" type="text/x-handlebars-template">
-                <div class="card text-center">
-                    <div class="card-block">
-                        <div class="row justify-content-center">
-                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                <a class="no-link" href="departure.html">
+                    <div id="departure" class="card text-center">
+                        <div class="card-block">
+                            <div class="row justify-content-center">
+                                <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{time}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{duration}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{airline}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>${{price}}</h3>
+                            </div>
                         </div>
-                        <div class="row justify-content-center">
-                            <h3>{{time}}</h3>
-                        </div>
-                        <div class="row justify-content-center">
-                            <h3>{{duration}}</h3>
-                        </div>
-                        <div class="row justify-content-center">
-                            <h3>{{airline}}</h3>
-                        </div>
-                        <div class="row justify-content-center">
-                            <h3>${{price}}</h3>
-                        </div>
+                        <!--<a id="departure" role="button" class="btn btn-success" href="departure.html">View Details</a>-->
+                        <a role="button" class="btn btn-success edit" href="departureflights.html">Edit</a>
                     </div>
-                    <a id="departure" role="button" class="btn btn-success" href="departure.html">View Details</a>
-                    <a role="button" class="btn btn-primary" href="departureflights.html">Edit</a>
-                </div>
+                </a>
             </script>
         </div>
         <br>
         <h2>Hotel</h2>
         <div id="hotelCard">
             <script id="hotelTemplate" type="text/x-handlebars-template">
-                <div class="card text-center">
-                    <div class="card text-center">
-                        <div class="card-block">
-                            <div class="row justify-content-center">
-                                <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                <a class="no-link" href="hotel.html">
+                    <div id="hotel" class="card text-center">
+                            <div class="card-block">
+                                <div class="row justify-content-center">
+                                    <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h3>{{hotel}}</h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    {{{stars}}}
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h3>{{rating}}</h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h3>${{price}}</h3>
+                                </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <h3>{{hotel}}</h3>
-                            </div>
-                            <div class="row justify-content-center">
-                                {{{stars}}}
-                            </div>
-                            <div class="row justify-content-center">
-                                <h3>{{rating}}</h3>
-                            </div>
-                            <div class="row justify-content-center">
-                                <h3>${{price}}</h3>
-                            </div>
-                        </div>
-                        <a id="hotel" role="button" class="btn btn-success" href="hotel.html">View Details</a>
-                        <a role="button" class="btn btn-primary" href="hotels.html">Edit</a>
+                            <a role="button" class="btn btn-success edit" href="hotels.html">Edit</a>
                     </div>
-                </div>
+                </a>
             </script>
         </div>
         <br>
         <h2>Return Flight</h2>
         <div id="returnCard">
             <script id="returnTemplate" type="text/x-handlebars-template">
-                <div class="card text-center">
-                    <div class="card-block">
-                        <div class="row justify-content-center">
-                            <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                <a class="no-link" href="return.html">
+                    <div id="return" class="card text-center">
+                        <div class="card-block">
+                            <div class="row justify-content-center">
+                                <i class="fa fa-plane fa-5x" aria-hidden="true"></i>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{time}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{duration}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{airline}}</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>${{price}}</h3>
+                            </div>
                         </div>
-                        <div class="row justify-content-center">
-                            <h3>{{time}}</h3>
-                        </div>
-                        <div class="row justify-content-center">
-                            <h3>{{duration}}</h3>
-                        </div>
-                        <div class="row justify-content-center">
-                            <h3>{{airline}}</h3>
-                        </div>
-                        <div class="row justify-content-center">
-                            <h3>${{price}}</h3>
-                        </div>
+                        <a role="button" class="btn btn-success edit" href="returnflights.html">Edit</a>
                     </div>
-                    <a id="return" role="button" class="btn btn-success" href="return.html">View Details</a>
-                    <a role="button" class="btn btn-primary" href="returnflights.html">Edit</a>
-                </div>
+                </a>
             </script>
         </div>
         <br>

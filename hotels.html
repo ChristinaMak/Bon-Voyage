@@ -29,10 +29,13 @@
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+
     <title>Change Hotels</title>
 </head>
 <body onload="setupHotels()">
-    <nav class="navbar navbar-light bg-faded fixed-top" style="background-color: #d3f3fe;">
+    <nav class="navbar navbar-light bg-faded fixed-top">
         <a class="btn fa fa-arrow-left fa-2x" href="details.html"></a>
     </nav>
     <div class="container-fluid text-center">
@@ -40,6 +43,7 @@
         <h2>Current Hotel</h2>
         <div id="currentCard">
             <script id="currentTemplate" type="text/x-handlebars-template">
+                <a class="no-link" href="hotel.html">
                 <div class="card text-center">
                     <div class="card-block">
                         <div class="row justify-content-center">
@@ -58,14 +62,16 @@
                             <h3>${{price}}</h3>
                         </div>
                     </div>
-                    <a id="currentView" role="button" class="btn btn-success" href="hotel.html">View Details</a>
+                    <a id="currentView"</a>
                 </div>
+            </a>
             </script>
         </div>
         <br>
         <h2>Other Hotel Options</h2>
         <div id="alternativeCard1">
             <script id="alternativeTemplate1" type="text/x-handlebars-template">
+                <a class="no-link" href="hotel.html">
                 <div class="card text-center">
                     <div class="card-block">
                         <div class="row justify-content-center">
@@ -84,14 +90,16 @@
                             <h3>${{price}}</h3>
                         </div>
                     </div>
-                    <a id="alternativeView1" role="button" class="btn btn-success" href="hotel.html">View Details</a>
+                    <a id="alternativeView1"</a>
                     <a id="alternativeBtn1" role="button" class="btn btn-primary" href="details.html">Choose</a>
                 </div>
+            </a>
             </script>
         </div>
         <br>
         <div id="alternativeCard2">
             <script id="alternativeTemplate2" type="text/x-handlebars-template">
+                <a class="no-link" href="hotel.html">
                 <div class="card text-center">
                     <div class="card-block">
                         <div class="row justify-content-center">
@@ -110,9 +118,10 @@
                             <h3>${{price}}</h3>
                         </div>
                     </div>
-                    <a id="alternativeView2" role="button" class="btn btn-success" href="hotel.html">View Details</a>
+                    <a id="alternativeView2"</a>
                     <a id="alternativeBtn2" role="button" class="btn btn-primary" href="details.html">Choose</a>
                 </div>
+            </a>
             </script>
         </div>
         <br>

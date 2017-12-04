@@ -27,41 +27,31 @@
     <script src="js/helper.js"></script>
     <script src="js/index.js"></script>
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+
     <title>Where are you traveling from?</title>
 </head>
 
-<body>
-    <nav class="navbar navbar-light bg-faded fixed-top" style="background-color: #d3f3fe;">
-        <i class="btn fa fa-arrow-left fa-2x" style="color: #d3f3fe;" aria-hidden="true"></i>
-    </nav>
+<body id="landing">
+
     <div class="container-fluid">
-        <!-- progress bar from https://codepen.io/atakan/pen/gqbIz -->
-        <ul id="progressbar">
-            <li class="active"><a href="index.html">Departing City</a></li>
-            <li><a href="travelingto.html">Destination City</a></li>
-            <li><a href="dates.html">Travel Dates</a></li>
-            <li><a href="party.html"># of People</a></li>
-        </ul>
-
+        <nav class="navbar navbar-light bg-faded fixed-top">
+            <i class="btn fa fa-arrow-left fa-2x" style="color: #444C5C;" aria-hidden="true"></i>
+        </nav>
         <br>
-
-        <h1 class="text-center">Where are you traveling from?</h1>
-
-        <br>
-
         <div class="row justify-content-md-center">
             <div class="col-md-12">
-                <input class="city-text-box form-control form-control-lg" type="text" id="originCity" placeholder="Choose your city" autofocus>
+                <img src="pics/bvlogo1.png" id="logo">
             </div>
         </div>
+        <br>
 
-
-        <div class="row justify-content-center">
-            <button id="findLocation" class="btn btn-secondary btn-lg" onclick="findLocation('San Diego')"><i class="fa fa-map-marker" aria-hidden="true"></i> Find Location</button>
-        </div>
+        <p id="intro">Welcome to the travel planner that finds flights and hotels based on your needs.<br><br>
+        Start by filling out a four step form and we'll take care of the rest.</p>
 
         <div class="col-md-12">
-            <a class="btn btn-primary btn-lg t-continue" id="continue" href="travelingto.html" role="button" onclick="originCity()">Continue</a>
+            <a class="btn btn-primary btn-lg t-continue" id="continue" href="origin.html" role="button">Start</a>
         </div>
     </div>
 </body>

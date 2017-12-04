@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -25,39 +25,47 @@
 
     <!-- Import helper functions -->
     <script src="js/helper.js"></script>
-    <script src="js/party.js"></script>
+    <script src="js/index.js"></script>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
 
-    <title>How many people are in your party?</title>
+    <title>Where are you traveling from?</title>
 </head>
+
 <body>
     <nav class="navbar navbar-light bg-faded fixed-top">
-        <a class="btn fa fa-arrow-left fa-2x" href="dates.html"></a>
+        <a class="btn fa fa-arrow-left fa-2x" href="index.html"></a>
     </nav>
     <div class="container-fluid">
         <!-- progress bar from https://codepen.io/atakan/pen/gqbIz -->
         <ul id="progressbar">
             <li class="active"><a href="origin.html">Departing City</a></li>
-            <li class="active"><a href="travelingto.html">Destination City</a></li>
-            <li class="active"><a href="dates.html">Travel Dates</a></li>
-            <li class="active"><a href="party.html"># of People</a></li>
+            <li><a href="travelingto.html">Destination City</a></li>
+            <li><a href="dates.html">Travel Dates</a></li>
+            <li><a href="party.html"># of People</a></li>
         </ul>
+
         <br>
-        <h1 class="text-center">How many people are in your party?</h1>
+
+        <h1 class="text-center">Where are you traveling from?</h1>
+
         <br>
-        <div class="col-12">
-            <form>
-                <input type="number" min="1" step="1" onkeypress="return event.charCode >= 48" class="city-text-box form-control form-control-lg" id="party" value="2" autofocus/>
-            </form>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12">
+                <input class="city-text-box form-control form-control-lg" type="text" id="originCity" placeholder="Choose your city" autofocus>
+            </div>
         </div>
 
-        <div class="col-12">
-            <a class="btn btn-primary btn-lg t-continue" id="findPackages" role="button" onclick="party()">Find Packages</a>
+
+        <div class="row justify-content-center">
+            <button id="findLocation" class="btn btn-secondary btn-lg" onclick="findLocation('San Diego')"><i class="fa fa-map-marker" aria-hidden="true"></i> Find Location</button>
         </div>
 
-        <div id="snackbar">One or more fields is incomplete:<br></div>
+        <div class="col-md-12">
+            <a class="btn btn-primary btn-lg t-continue" id="continue" href="travelingto.html" role="button" onclick="originCity()">Continue</a>
+        </div>
     </div>
 </body>
 </html>
