@@ -198,28 +198,34 @@ function setupDetails() {
     localStorage.setItem('total', document.getElementById('total').innerHTML);
 
     // Onclicks for viewing each package item
-    document.getElementById('departure').onclick = function() {
-        // Send click event to Google Analytics
-        tracker = ga.getAll()[0];
-        tracker.send('event', 'view', 'click');
-        localStorage.setItem('link', 'details.html');
-        localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
-    };
-    document.getElementById('hotel').onclick = function() {
-        // Send click event to Google Analytics
-        tracker = ga.getAll()[0];
-        tracker.send('event', 'view', 'click');
-        localStorage.setItem('link', 'details.html');
-        localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
-        localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
-    };
-    document.getElementById('return').onclick = function() {
-        // Send click event to Google Analytics
-        tracker = ga.getAll()[0];
-        tracker.send('event', 'view', 'click');
-        localStorage.setItem('link', 'details.html');
-        localStorage.setItem('chosenReturn', localStorage.getItem('return'));
-    };
+    if (document.getElementById('departure') !== null) {
+        document.getElementById('departure').onclick = function() {
+            // Send click event to Google Analytics
+            tracker = ga.getAll()[0];
+            tracker.send('event', 'view', 'click');
+            localStorage.setItem('link', 'details.html');
+            localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
+        };
+    }
+    if (document.getElementById('departure') !== null) {
+        document.getElementById('hotel').onclick = function() {
+            // Send click event to Google Analytics
+            tracker = ga.getAll()[0];
+            tracker.send('event', 'view', 'click');
+            localStorage.setItem('link', 'details.html');
+            localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
+            localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
+        };
+    }
+    if (document.getElementById('departure') !== null) {
+        document.getElementById('return').onclick = function() {
+            // Send click event to Google Analytics
+            tracker = ga.getAll()[0];
+            tracker.send('event', 'view', 'click');
+            localStorage.setItem('link', 'details.html');
+            localStorage.setItem('chosenReturn', localStorage.getItem('return'));
+        };
+    }
 }
 
 // Set up newDetails page

@@ -320,3 +320,7 @@ body {
 caption {
     caption-side: top;
 }
+
+#bookButton {
+    font-size: 12px;
+}
