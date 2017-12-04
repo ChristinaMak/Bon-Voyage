@@ -67,6 +67,10 @@ body {
     color: #E1B16A;
 }
 
+.fa-arrow-left:clicked {
+    color: #E1B16A;
+}
+
 .no-link {
     text-decoration: none!important;
     color: black!important;

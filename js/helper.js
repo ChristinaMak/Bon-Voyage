@@ -50,10 +50,10 @@ function dates() {
     //var start = $('#datespicker').data('daterangepicker').startDate;
     //var end = $('#datespicker').data('daterangepicker').endDate;
     //var difference = end.diff(start, 'days');
-    var start = moment($('#start-date').data('mk-datepicker').date)
-    var end = moment($('#end-date').data('mk-datepicker').date)
+    var start = moment($('#start-date').data('mk-datepicker').date);
+    var end = moment($('#end-date').data('mk-datepicker').date);
     var difference = end.diff(start, 'days');
-    console.log("difference")
+    console.log("difference");
     console.log(difference);
     localStorage.setItem('dates', difference);
     localStorage.setItem('datesValues', document.getElementById("datespicker").value);
@@ -172,8 +172,73 @@ function choosePackage(package) {
     }
 }
 
+// Set up the data of each flight card
+function setFlightData(allData) {
+    var returnData =  {
+        'time': allData.time,
+        'duration': allData.duration,
+        'airline': allData.airline,
+        'price': numberWithCommas(allData.price)
+    };
+    return returnData;
+}
+
+function setHotelData(allData) {
+    returnData = {
+        'hotel': allData.hotel,
+        'stars': allData.stars,
+        'rating': allData.rating,
+        'price': numberWithCommas(allData.price)
+    };
+    return returnData;
+}
+
 // Set up details page
 function setupDetails() {
+    // Populate package item card templates with fake data
+    var parentDiv = $('#departureCard');
+    var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
+    var data = JSON.parse(localStorage.getItem('departure'));
+    var html = template(setFlightData(data));
+    parentDiv.append(html);
+
+    parentDiv = $('#hotelCard');
+    template = Handlebars.compile(document.getElementById('hotelTemplate').innerHTML);
+    data = JSON.parse(localStorage.getItem('hotel'));
+    html = template(setHotelData(data));
+    parentDiv.append(html);
+
+    parentDiv = $('#returnCard');
+    template = Handlebars.compile(document.getElementById('returnTemplate').innerHTML);
+    data = JSON.parse(localStorage.getItem('return'));
+    html = template(setFlightData(data));
+    parentDiv.append(html);
+
+    // Calculate and display correct total, store it in localStorage
+    document.getElementById('total').innerHTML = 'Total: $' + numberWithCommas(calcTotal());
+    localStorage.setItem('total', document.getElementById('total').innerHTML);
+
+    // Onclicks for viewing each package item
+    document.getElementById('departure').onclick = function() {
+        // Send click event to Google Analytics
+        localStorage.setItem('link', 'details.html');
+        localStorage.setItem('chosenDeparture', localStorage.getItem('departure'));
+    };
+    document.getElementById('hotel').onclick = function() {
+        // Send click event to Google Analytics
+        localStorage.setItem('link', 'details.html');
+        localStorage.setItem('chosenHotel', localStorage.getItem('hotel'));
+        localStorage.setItem('chosenHotNum', localStorage.getItem('hotNum'));
+    };
+    document.getElementById('return').onclick = function() {
+        // Send click event to Google Analytics
+        localStorage.setItem('link', 'details.html');
+        localStorage.setItem('chosenReturn', localStorage.getItem('return'));
+    };
+}
+
+// Set up oldDetails page
+function setupOldDetails() {
     // Populate package item card templates with fake data
     var parentDiv = $('#departureCard');
     var template = Handlebars.compile(document.getElementById('departureTemplate').innerHTML);
@@ -278,27 +343,6 @@ function setupRedesign() {
     };
 }
 
-// Set up the data of each flight card
-function setFlightData(allData) {
-    var returnData =  {
-        'time': allData.time,
-        'duration': allData.duration,
-        'airline': allData.airline,
-        'price': numberWithCommas(allData.price)
-    };
-    return returnData;
-}
-
-function setHotelData(allData) {
-    returnData = {
-        'hotel': allData.hotel,
-        'stars': allData.stars,
-        'rating': allData.rating,
-        'price': numberWithCommas(allData.price)
-    };
-    return returnData;
-}
-
 // Set up edit departures page
 function setupDepartures() {
     // Get current departure choice information from localStorage
@@ -322,14 +366,14 @@ function setupDepartures() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        allData = JSON.parse(localStorage.getItem('premDep'))
+        allData = JSON.parse(localStorage.getItem('premDep'));
         html = template(setFlightData(allData));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
         allData = JSON.parse(localStorage.getItem('luxDep'));
-        html = template(setFlightData(allData))
+        html = template(setFlightData(allData));
         parentDiv.append(html);
 
         // Onclick to change departure when choose is clicked
@@ -358,12 +402,12 @@ function setupDepartures() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('basicDep')));
+        html = template(setFlightData(JSON.parse(localStorage.getItem('basicDep'))));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('luxDep')));
+        html = template(setFlightData(JSON.parse(localStorage.getItem('luxDep'))));
         parentDiv.append(html);
 
         // Onclick to change departure when choose is clicked
@@ -392,12 +436,12 @@ function setupDepartures() {
         // Populate alternative card templates
         parentDiv = $('#alternativeCard1');
         template = Handlebars.compile(document.getElementById('alternativeTemplate1').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('basicDep')));
+        html = template(setFlightData(JSON.parse(localStorage.getItem('basicDep'))));
         parentDiv.append(html);
 
         parentDiv = $('#alternativeCard2');
         template = Handlebars.compile(document.getElementById('alternativeTemplate2').innerHTML);
-        html = template(JSON.parse(localStorage.getItem('premDep')));
+        html = template(setFlightData(JSON.parse(localStorage.getItem('premDep'))));
         parentDiv.append(html);
 
         // Onclick to change departure when choose is clicked
@@ -724,7 +768,7 @@ function setupView(type) {
 function setupHotel() {
     // Get hotel info from localStorage
     var data = JSON.parse(localStorage.getItem('chosenHotel'));
-    var index = localStorage.getItem('chosenHotNum')
+    var index = localStorage.getItem('chosenHotNum');
 
     // Populate info template with chosen data
     var parentDiv = $('#info');
